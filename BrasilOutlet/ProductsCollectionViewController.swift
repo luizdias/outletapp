@@ -7,88 +7,122 @@
 //
 
 import UIKit
+import Alamofire
+import SwiftyJSON
 
-private let reuseIdentifier = "Cell"
+class ProductsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, APIProtocol {
+    
+    @IBOutlet var myCollectionView: UICollectionView!
+    
+    var viewControllerDelegate : ViewControllerProtocol?
+    private var str : String?
+    
+    var MyAPI = API()
+    var tableData = ["Um", "Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete", "Oito"]
+    var tableImages = ["sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg"]
+    
+    var productModelList: NSMutableArray = []
+    
+    func didReceiveResult(result: JSON) {
+        let products: NSMutableArray = []
+        
+        NSLog("Product.didReceiveResult: \(result)")
+        
+        for (index,subJson):(String, JSON) in result {
+            let product = ProductModel()
+            product.activated = subJson["activated"].intValue
+            product.description = subJson["description"].stringValue
+            product.discountPercent = subJson["discountPercent"].intValue
+            product.discountPrice = subJson["discountPrice"].stringValue
+            product.fullPrice = subJson["fullPrice"].stringValue
+            product.id = subJson["id"].intValue
+            product.image = subJson["image"].stringValue
+            product.startDate = subJson["startDate"].stringValue
+            product.title = subJson["title"].stringValue
+            print("URL da imagem: \(product.image)")
+            products.addObject(product)
+            print("\(products.description) e indice: \(index)")
+        }
+        
+        productModelList = products
+        
+        print("Quantidade de itens after: \(productModelList.count)")
+        print("Trying to reload data after the response...")
+        
+        // Make sure we are on the main thread, and update the UI.
+        dispatch_async(dispatch_get_main_queue(), {
+            self.myCollectionView.collectionViewLayout.invalidateLayout()
+            self.myCollectionView.reloadData()
+            self.myCollectionView.reloadSections(NSIndexSet.init(index: 0))
+            print("dispatch main queue here!")
+        
+        })
+    }
 
-class ProductsCollectionViewController: UICollectionViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Uncomment the following line to preserve selection between presentations
-        // self.clearsSelectionOnViewWillAppear = false
-
-        // Register cell classes
-        self.collectionView!.registerClass(UICollectionViewCell.self, forCellWithReuseIdentifier: reuseIdentifier)
-
-        // Do any additional setup after loading the view.
+        
+        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
+    
     }
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using [segue destinationViewController].
-        // Pass the selected object to the new view controller.
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewDidAppear(true)
     }
-    */
 
     // MARK: UICollectionViewDataSource
+    func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        print("Quantidade de itens na sessao: \(productModelList.count)")
 
-    override func numberOfSectionsInCollectionView(collectionView: UICollectionView) -> Int {
-        // #warning Incomplete implementation, return the number of sections
-        return 0
+        if productModelList.count != 0{
+            return productModelList.count
+        } else {
+            return tableData.count
+        }
+
     }
 
+    func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
 
-    override func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of items
-        return 0
-    }
+        if productModelList.count != 0{
+            let productArray = productModelList[indexPath.row] as! ProductModel
+            cell.productActualPrice.text = productArray.discountPrice
+            cell.productDescription.text = productArray.description
+            cell.productOriginalPrice.text = productArray.fullPrice
+            cell.productDiscountDates.text = ("Promoção válida de: \n" + "\(productArray.startDate) até \(productArray.endDate)")
+            
+            //loading image from URL Synchronously:
+//            if let url = NSURL(string: productArray.image) {
+//                if let data = NSData(contentsOfURL: url){
+//                    cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
+//                    cell.productImage.image = UIImage(data: data)
+//                }
+//            }
 
-    override func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier(reuseIdentifier, forIndexPath: indexPath)
-    
-        // Configure the cell
-    
+            //loading images from URLs Asyncronously
+            let imageURL = (productArray.image)
+            cell.productImage.image = nil
+            cell.request?.cancel()
+            cell.request = Alamofire.request(.GET, imageURL).responseImage() {
+                [weak self] response in
+                if let image = response.result.value {
+                    cell.productImage.image = image
+                }
+            }
+        }
         return cell
     }
 
-    // MARK: UICollectionViewDelegate
 
-    /*
-    // Uncomment this method to specify if the specified item should be highlighted during tracking
-    override func collectionView(collectionView: UICollectionView, shouldHighlightItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
+    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+        print("selecionou uma celula!")
     }
-    */
-
-    /*
-    // Uncomment this method to specify if the specified item should be selected
-    override func collectionView(collectionView: UICollectionView, shouldSelectItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return true
-    }
-    */
-
-    /*
-    // Uncomment these methods to specify if an action menu should be displayed for the specified item, and react to actions performed on the item
-    override func collectionView(collectionView: UICollectionView, shouldShowMenuForItemAtIndexPath indexPath: NSIndexPath) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, canPerformAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) -> Bool {
-        return false
-    }
-
-    override func collectionView(collectionView: UICollectionView, performAction action: Selector, forItemAtIndexPath indexPath: NSIndexPath, withSender sender: AnyObject?) {
     
-    }
-    */
-
 }

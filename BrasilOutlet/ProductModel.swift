@@ -7,3 +7,59 @@
 //
 
 import Foundation
+
+class ProductModel {
+    var activated = 1
+    var brandId = 979
+    var description = " "
+    var discountPercent = 26
+    var discountPrice = ""
+    var endDate = "31/10/2015"
+    var favorite = " "
+    var favoriteCount = 4
+    var female = 1
+    var fullPrice = " "
+    var house = 1
+    var id = 44
+    var image = "http://www.brasiloutlet.com/upload/discounts/44.jpg"
+    var kids = 0
+    var likeCount = 0
+    var male = 1
+    var refuseReason = " "
+    var rules = " "
+    var shareCount = 8
+    var startDate = " "
+    var title = " "
+    
+    var category = [
+        "favorite" : " ",
+        "gender" : " ",
+        "id" : 105,
+        "idfather" : 2,
+        "image" : " ",
+        "image_path"  : " ",
+        "name" : " "
+]
+    var store = [
+        "address" : " ",
+        "cityId" : " ",
+        "cnpj" : " ",
+        "favorite" : " ",
+        "id" : 28,
+        "latCoordinate" : " ",
+        "longCoordinate" : " ",
+        "name" : " ",
+        "neighborId" : 376,
+        "neighborName" : " ",
+        "shoppingId" : " ",
+        "shoppingName" : " ",
+        "socialName" : " ",
+        "subscriptionDiscountsLimit" : " ",
+        "subscriptionExpirationDate" : " ",
+        "subscriptionPlan" : " ",
+        "telephone1" : " ",
+        "telephone2" : " "
+    ]
+
+    
+}

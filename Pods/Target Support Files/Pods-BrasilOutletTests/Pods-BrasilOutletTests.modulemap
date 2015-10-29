@@ -1,0 +1,6 @@
+framework module Pods_BrasilOutletTests {
+  umbrella header "Pods-BrasilOutletTests-umbrella.h"
+
+  export *
+  module * { export * }
+}
