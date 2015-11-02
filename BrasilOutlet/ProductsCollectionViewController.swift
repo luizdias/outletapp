@@ -96,6 +96,7 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
             cell.productActualPrice.text = productArray.discountPrice
             cell.productDescription.text = productArray.description
             cell.productOriginalPrice.text = productArray.fullPrice
+            cell.productDiscountValue.titleLabel?.text = "\(productArray.discountPercent)%"
             cell.productDiscountDates.text = ("Promoção válida de: \n" + "\(productArray.startDate) até \(productArray.endDate)")
             
             //loading image from URL Synchronously:
@@ -113,6 +114,7 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
             cell.request = Alamofire.request(.GET, imageURL).responseImage() {
                 [weak self] response in
                 if let image = response.result.value {
+                    cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
                     cell.productImage.image = image
                 }
             }

@@ -8,7 +8,7 @@ use_frameworks!
 pod 'Alamofire', '~> 3.0'
 
 # This one helps us to deal with UIImage (resize and stuff)
-pod 'AlamofireImage', '~> 2.0'
+# pod 'AlamofireImage', '~> 2.0'
 
 # If you use Alamofire to abstract away NSURLSession,
 # why not use something to abstract away the nitty gritty of URLs, parameters, etc?

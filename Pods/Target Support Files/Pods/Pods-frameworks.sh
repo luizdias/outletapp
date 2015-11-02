@@ -85,14 +85,12 @@ strip_invalid_archs() {
 
 if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods/Alamofire.framework"
-  install_framework "Pods/AlamofireImage.framework"
   install_framework "Pods/KYDrawerController.framework"
   install_framework "Pods/MBProgressHUD.framework"
   install_framework "Pods/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods/Alamofire.framework"
-  install_framework "Pods/AlamofireImage.framework"
   install_framework "Pods/KYDrawerController.framework"
   install_framework "Pods/MBProgressHUD.framework"
   install_framework "Pods/SwiftyJSON.framework"

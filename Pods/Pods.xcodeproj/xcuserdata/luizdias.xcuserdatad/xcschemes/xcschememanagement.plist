@@ -9,11 +9,6 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
-		<key>AlamofireImage.xcscheme</key>
-		<dict>
-			<key>isShown</key>
-			<false/>
-		</dict>
 		<key>KYDrawerController.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -52,7 +47,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>03D7F46CF05F7C474FD792D8022E2425</key>
+		<key>41EA96A5F0EFC7701E4756965B7533D3</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,22 +62,17 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>7002CFE6088C23F5345166AF888E19FB</key>
+		<key>47FF7E660C4AFA96D2D9B30C8FAD2970</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>A1BF58736B6CCECB5DB30E2108366143</key>
+		<key>6F560CD7684B098E080B2DDE3788EBFC</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>B81DFF8FA6912E39DCC344DDEC54C077</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>D32381DB97A1F30814FE5403959D6C24</key>
+		<key>8D2B03B9FFCAF680B7578ACD92440FC7</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -92,7 +82,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>EBB58DBCD88ABFF0FA99D29EC2B4F224</key>
+		<key>FEAEEBC602701A9A5A2D35BDCFFE74F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

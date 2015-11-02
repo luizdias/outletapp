@@ -47,7 +47,7 @@ class DiscountsCollectionViewController: UICollectionViewController, APIProtocol
         print("Trying to reload data after the response...")
         
         // Make sure we are on the main thread, and update the UI.
-        dispatch_sync(dispatch_get_main_queue(), {
+        dispatch_async(dispatch_get_main_queue(), {
             self.collectionView?.reloadData()
             self.collectionView?.reloadSections(NSIndexSet.init(index: 0))
             print("dispatch main queue here!")

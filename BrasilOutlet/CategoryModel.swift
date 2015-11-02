@@ -1,5 +1,5 @@
 //
-//  CategoriesModel.swift
+//  CategoryModel.swift
 //  BrasilOutlet
 //
 //  Created by Luiz Dias on 10/30/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-class CategoriesModel {
+class CategoryModel {
     
     var id = "0"
     var name = " "

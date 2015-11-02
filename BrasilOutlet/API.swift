@@ -13,13 +13,28 @@ import SwiftyJSON
 class API {
     
     let hostname = "http://www.brasiloutlet.com"
+   let hostdummy = "http://localhost:3000"
+    
+    let defaultManager: Alamofire.Manager = {
+        let serverTrustPolicies: [String: ServerTrustPolicy] = [
+            "localhost": .DisableEvaluation
+        ]
+        
+        let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
+        configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
+        
+        return Alamofire.Manager(
+            configuration: configuration,
+            serverTrustPolicyManager: ServerTrustPolicyManager(policies: serverTrustPolicies)
+        )
+    }()
     
     // Setting up an API Class with a GET method that accepts a elegate of type APIProtocol
     func get(path: String, parameters: [String: AnyObject]? = nil, delegate: APIProtocol? = nil){
         let url = "\(self.hostname)\(path)"
         NSLog("Preparing for GET request to: \(url)")
         
-        Alamofire.request(.GET, url, parameters: parameters)
+        Alamofire.request(.POST, url, parameters: parameters)
             .validate()
             .responseJSON { response in
                 switch response.result {
@@ -38,8 +53,6 @@ class API {
         }
     }
 
-    
-    
     // Setting up an API Class with a POST method that accepts a elegate of type APIProtocol
     func post(path: String, parameters: [String: AnyObject]? = nil, delegate: APIProtocol? = nil){
         let url = "\(self.hostname)\(path)"
@@ -66,6 +79,32 @@ class API {
         
         
     }
+    
+    
+    // Setting up an API Class with a GET method that accepts a elegate of type APIProtocol
+    func getLocal(path: String, parameters: [String: AnyObject]? = nil, delegate: APIProtocol? = nil){
+        let url = "\(self.hostdummy)\(path)"
+        NSLog("Preparing for GET request to: \(url)")
+        
+        defaultManager.request(.GET, url, parameters: parameters)
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    print("GET Validation Successful")
+                    let json = JSON(response.result.value!)
+                    print("GET Result: \(json)")
+                    // Call delegate if it was passed into the call
+                    if (delegate != nil) {
+                        delegate!.didReceiveResult(json)
+                    }
+                case .Failure(let error):
+                    print("GET Error: \(error)")
+                }
+                
+        }
+    }
+
     
 }
 
