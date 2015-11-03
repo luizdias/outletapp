@@ -9,9 +9,11 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import CoreLocation
 
-class CategoriesTableViewController: UITableViewController, APIProtocol {
+class CategoriesTableViewController: UITableViewController, CLLocationManagerDelegate, APIProtocol {
 
+    var locManager = CLLocationManager()
     var request: Alamofire.Request?
     var tableData = ["Ops! Não foi possível carregar os dados."]
     var MyAPI = API()
@@ -59,7 +61,20 @@ class CategoriesTableViewController: UITableViewController, APIProtocol {
         //        MyAPI.get("/db")
 
         MyAPI.post("/webservice/category/discountcategorylist.php", parameters: [ "idcity" : "7", "gender" : "1"  ], delegate: self)
+        
 
+        locManager.requestWhenInUseAuthorization()
+        
+        var currentLocation = CLLocation()
+        
+        if( CLLocationManager.authorizationStatus() == CLAuthorizationStatus.AuthorizedWhenInUse ||
+            CLLocationManager.authorizationStatus() == CLAuthorizationStatus.Authorized){
+                
+                currentLocation = locManager.location!
+        }
+        
+        print("Localization longitude: \(currentLocation.coordinate.longitude)")
+        print("Localization latitude: \(currentLocation.coordinate.latitude)")
     }
 
     override func didReceiveMemoryWarning() {

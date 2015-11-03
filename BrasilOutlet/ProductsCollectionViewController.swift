@@ -9,18 +9,18 @@
 import UIKit
 import Alamofire
 import SwiftyJSON
+import Social
 
-class ProductsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, APIProtocol {
+class ProductsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCellDelegate, APIProtocol {
     
     @IBOutlet var myCollectionView: UICollectionView!
     
-    var viewControllerDelegate : ViewControllerProtocol?
     private var str : String?
-    
+    var viewControllerDelegate : ViewControllerProtocol?
     var MyAPI = API()
     var tableData = ["Um", "Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete", "Oito"]
     var tableImages = ["sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg"]
-    
+    var productImages : [UIImage] = []
     var productModelList: NSMutableArray = []
     
     func didReceiveResult(result: JSON) {
@@ -88,14 +88,18 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
 
     }
 
+    var myIndexPath : NSIndexPath!
+
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
 
+        cell.delegate = self
+        myIndexPath = indexPath
         if productModelList.count != 0{
             let productArray = productModelList[indexPath.row] as! ProductModel
             cell.productActualPrice.text = productArray.discountPrice
             cell.productDescription.text = productArray.description
-            cell.productOriginalPrice.text = productArray.fullPrice
+//            cell.productOriginalPrice.text = productArray.fullPrice
             cell.productDiscountValue.titleLabel?.text = "\(productArray.discountPercent)%"
             cell.productDiscountDates.text = ("Promoção válida de: \n" + "\(productArray.startDate) até \(productArray.endDate)")
             
@@ -115,11 +119,44 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
                 [weak self] response in
                 if let image = response.result.value {
                     cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
+                    self?.productImages[indexPath.row] = image
                     cell.productImage.image = image
                 }
             }
         }
+        
+//        var selectedItems = [String]()
+//        func cellButtonTapped(cell: ProductsCollectionViewCell) {
+//            let selectedItem = productModelList[indexPath.row]
+//            
+//            if let selectedItemIndex = selectedItems.indexOf(selectedItem as! String) {
+//                selectedItems.removeAtIndex(selectedItemIndex)
+//            } else {
+//                selectedItems.append(selectedItem as! String)
+//            }
+//        }
+
         return cell
+    }
+    
+    private var selectedItems = [String]()
+    func cellButtonTapped(cell: ProductsCollectionViewCell) {
+//        let indexPath = self.tableView.indexPathForRowAtPoint(cell.center)!
+//        let indexPath = self.collectionView!.indexPathForCell(cell)
+//        let indexPath = self.indexPathForCell(cell.center as UICollectionViewCell!)
+        let selectedItem = productModelList[myIndexPath.row]
+        
+        if let selectedItemIndex = selectedItems.indexOf(selectedItem as! String) {
+            selectedItems.removeAtIndex(selectedItemIndex)
+        } else {
+            selectedItems.append(selectedItem as! String)
+        }
+        let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        shareToFacebook.setInitialText("Veja este produto no Brasil Oulet")
+        shareToFacebook.addImage(productImages[myIndexPath.row])
+        let productURL = NSURL(string: "www")
+        shareToFacebook.addURL(productURL)
+        self.presentViewController(shareToFacebook, animated: true, completion: nil)
     }
 
 

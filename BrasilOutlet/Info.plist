@@ -48,5 +48,7 @@
 	</array>
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>Mensagem entra aqui</string>
 </dict>
 </plist>

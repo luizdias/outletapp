@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9510CFED1BE848940008404D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9510CFEC1BE848940008404D /* Social.framework */; };
 		9554E19D1BE0173600AC2563 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */; };
 		9554E1A31BE04C5700AC2563 /* DiscountsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554E1A21BE04C5700AC2563 /* DiscountsCollectionViewController.swift */; };
 		958BFB641BE7028D0062B108 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BFB631BE7028D0062B108 /* CategoriesTableViewCell.swift */; };
@@ -52,6 +53,7 @@
 /* Begin PBXFileReference section */
 		4049798EFEB52FAB1A0F26EB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7F382DDCFA41C83F1F508B59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9510CFEC1BE848940008404D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 		9554E1A21BE04C5700AC2563 /* DiscountsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscountsCollectionViewController.swift; sourceTree = "<group>"; };
 		958BFB631BE7028D0062B108 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -88,6 +90,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9510CFED1BE848940008404D /* Social.framework in Frameworks */,
 				D152D2A9568C4CB5F450D77B /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,6 +124,7 @@
 		4A3ACA543A963C0926F83ADE /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				9510CFEC1BE848940008404D /* Social.framework */,
 				7F382DDCFA41C83F1F508B59 /* Pods.framework */,
 			);
 			name = Frameworks;

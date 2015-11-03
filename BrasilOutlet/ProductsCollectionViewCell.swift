@@ -9,6 +9,10 @@
 import UIKit
 import Alamofire
 
+protocol ProductsCellDelegate {
+    func cellButtonTapped(cell: ProductsCollectionViewCell)
+}
+
 class ProductsCollectionViewCell: UICollectionViewCell {
     
     var request: Alamofire.Request?
@@ -27,10 +31,17 @@ class ProductsCollectionViewCell: UICollectionViewCell {
         self.productHeartButton.tintColor = UIColor.redColor()
     }
     
+    var delegate: ProductsCellDelegate?
+    
     @IBAction func shareProduct(sender: UIButton) {
+        
+        delegate?.cellButtonTapped(self)
+        
     }
     
     @IBAction func likeProduct(sender: UIButton) {
     }
+    
+
     
 }
