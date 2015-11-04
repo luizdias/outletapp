@@ -1,5 +1,5 @@
 //
-//  ProductsCollectionViewController.swift
+//  TopDiscountsCollectionCollectionViewController.swift
 //  BrasilOutlet
 //
 //  Created by Luiz Dias on 10/26/15.
@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Social
 
-class ProductsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCellDelegate, APIProtocol {
+class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCellDelegate, APIProtocol {
     
     @IBOutlet var myCollectionView: UICollectionView!
     
@@ -55,18 +55,18 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
             self.myCollectionView.reloadData()
             self.myCollectionView.reloadSections(NSIndexSet.init(index: 0))
             print("dispatch main queue here!")
-        
+            
         })
     }
-
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
-    
+        
     }
-
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
@@ -75,22 +75,22 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(true)
     }
-
+    
     // MARK: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         print("Quantidade de itens na sessao: \(productModelList.count)")
-
+        
         if productModelList.count != 0{
             return productModelList.count
         } else {
             return tableData.count
         }
-
+        
     }
-
+    
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
-
+        
         cell.delegate = self
         if productModelList.count != 0{
             let productArray = productModelList[indexPath.row] as! ProductModel
@@ -132,11 +132,11 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
                 shareToFacebook.addImage(image)
             }
         }
-
+        
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
     }
-
-
+    
+    
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("selecionou uma celula!")
     }

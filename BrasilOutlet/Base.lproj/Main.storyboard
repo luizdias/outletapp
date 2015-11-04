@@ -7,7 +7,7 @@
         <!--Promoções do Dia-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="ProductsCollectionViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="BYZ-38-t0r" customClass="TopDiscountsCollectionViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -156,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1779.5" y="73.5"/>
+            <point key="canvasLocation" x="1718.5" y="96.5"/>
         </scene>
         <!--Promocoes Nav-->
         <scene sceneID="hMw-C9-9Xf">
@@ -216,6 +216,7 @@
                                     <outlet property="LeftImage" destination="3yy-RK-m3Y" id="GNe-Tg-wol"/>
                                     <outlet property="categoryDescription" destination="ULM-ch-sel" id="Isl-VT-zD6"/>
                                     <outlet property="leftImage" destination="3yy-RK-m3Y" id="ACr-uw-Kdc"/>
+                                    <segue destination="hYV-WF-Kly" kind="show" id="qaT-GP-7To"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -267,6 +268,160 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0EN-ue-P7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="540" y="386"/>
+        </scene>
+        <!--Dinamic name here-->
+        <scene sceneID="s5h-hj-v4l">
+            <objects>
+                <viewController automaticallyAdjustsScrollViewInsets="NO" id="hYV-WF-Kly" customClass="ProductsCollectionViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="qq0-n8-sUo"/>
+                        <viewControllerLayoutGuide type="bottom" id="KDv-ck-CSL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="BKu-15-Qft">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" misplaced="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="BgQ-n6-Z67">
+                                <rect key="frame" x="0.0" y="64" width="375" height="603"/>
+                                <animations/>
+                                <color key="backgroundColor" white="0.94846443970000005" alpha="1" colorSpace="calibratedWhite"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" minimumLineSpacing="10" minimumInteritemSpacing="10" id="kQ3-Dr-xS8">
+                                    <size key="itemSize" width="176" height="300"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="6" minY="6" maxX="6" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="Cell" id="ZMV-MK-zvX" customClass="ProductsCollectionViewCell" customModule="BrasilOutlet" customModuleProvider="target">
+                                        <rect key="frame" x="6" y="6" width="176" height="300"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                            <rect key="frame" x="0.0" y="0.0" width="176" height="300"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SampleProduct" translatesAutoresizingMaskIntoConstraints="NO" id="Fff-qL-ng5">
+                                                    <rect key="frame" x="8" y="8" width="160" height="160"/>
+                                                    <animations/>
+                                                </imageView>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qVG-CF-32P">
+                                                    <rect key="frame" x="8" y="169" width="160" height="41"/>
+                                                    <animations/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Teste de Label de descrição de duas linhas">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.25" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="17" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NJz-Ef-mTk">
+                                                    <rect key="frame" x="8" y="210" width="160" height="32"/>
+                                                    <animations/>
+                                                    <attributedString key="attributedText">
+                                                        <fragment content="Promoção válida de: 30/01/2015 até 30/11/2015">
+                                                            <attributes>
+                                                                <color key="NSColor" white="0.5" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                                <font key="NSFont" size="12" name="HelveticaNeue"/>
+                                                                <paragraphStyle key="NSParagraphStyle" alignment="center" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
+                                                            </attributes>
+                                                        </fragment>
+                                                    </attributedString>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="R$ 1.299,99" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1rd-sS-Sac">
+                                                    <rect key="frame" x="81" y="243" width="87" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
+                                                    <color key="textColor" red="1" green="0.62640086210000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PDM-MN-Vqo">
+                                                    <rect key="frame" x="141" y="265" width="27" height="27"/>
+                                                    <animations/>
+                                                    <state key="normal" image="Share"/>
+                                                    <connections>
+                                                        <action selector="shareProduct:" destination="ZMV-MK-zvX" eventType="touchUpInside" id="BgV-xu-hKo"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ZRJ-5K-mcI">
+                                                    <rect key="frame" x="8" y="269" width="19" height="23"/>
+                                                    <animations/>
+                                                    <state key="normal" image="Like"/>
+                                                    <connections>
+                                                        <action selector="likeProduct:" destination="ZMV-MK-zvX" eventType="touchUpInside" id="FlN-9I-5ow"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" alpha="0.69999998807907104" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uSj-LH-Fmb">
+                                                    <rect key="frame" x="131" y="14" width="32" height="25"/>
+                                                    <animations/>
+                                                    <color key="backgroundColor" red="0.51998922410000004" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                                    <state key="normal" title="28%">
+                                                        <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                                    </state>
+                                                </button>
+                                                <button opaque="NO" alpha="0.55000001192092896" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cby-nL-aJF">
+                                                    <rect key="frame" x="11" y="12" width="24" height="24"/>
+                                                    <animations/>
+                                                    <color key="tintColor" red="0.65544181030000004" green="0.0" blue="0.1947467672" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <state key="normal" image="Heart"/>
+                                                    <connections>
+                                                        <action selector="favoriteProduct:" destination="ZMV-MK-zvX" eventType="touchUpInside" id="lMK-E0-E94"/>
+                                                    </connections>
+                                                </button>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="R$ 2.500,00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kRt-GB-9fK">
+                                                    <rect key="frame" x="8" y="243" width="65" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <animations/>
+                                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                        </view>
+                                        <animations/>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                                        <size key="customSize" width="176" height="300"/>
+                                        <connections>
+                                            <outlet property="productActualPrice" destination="1rd-sS-Sac" id="A7g-QI-q7P"/>
+                                            <outlet property="productDescription" destination="qVG-CF-32P" id="ExQ-12-WMU"/>
+                                            <outlet property="productDiscountDates" destination="NJz-Ef-mTk" id="5kp-dH-kqV"/>
+                                            <outlet property="productDiscountValue" destination="uSj-LH-Fmb" id="B0q-K4-h7L"/>
+                                            <outlet property="productHeartButton" destination="Cby-nL-aJF" id="Soj-8k-M0g"/>
+                                            <outlet property="productImage" destination="Fff-qL-ng5" id="SZR-B5-nT0"/>
+                                            <outlet property="productLikeButton" destination="ZRJ-5K-mcI" id="b5F-dF-bAW"/>
+                                            <outlet property="productOriginalPrice" destination="kRt-GB-9fK" id="33b-cz-0wg"/>
+                                            <outlet property="productShareButton" destination="PDM-MN-Vqo" id="nc2-H2-gOQ"/>
+                                        </connections>
+                                    </collectionViewCell>
+                                </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="hYV-WF-Kly" id="FhX-RW-quF"/>
+                                    <outlet property="delegate" destination="hYV-WF-Kly" id="GDi-xO-Ob2"/>
+                                </connections>
+                            </collectionView>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="BgQ-n6-Z67" secondAttribute="trailing" id="15E-EH-52Q"/>
+                            <constraint firstItem="KDv-ck-CSL" firstAttribute="top" secondItem="BgQ-n6-Z67" secondAttribute="bottom" id="HPM-XX-Gqc"/>
+                            <constraint firstItem="BgQ-n6-Z67" firstAttribute="leading" secondItem="BKu-15-Qft" secondAttribute="leading" id="HXb-BH-GBS"/>
+                            <constraint firstItem="BgQ-n6-Z67" firstAttribute="top" secondItem="qq0-n8-sUo" secondAttribute="bottom" id="wTd-n0-ccc"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Dinamic name here" id="dNt-4g-ujJ"/>
+                    <connections>
+                        <outlet property="myCollectionView" destination="BgQ-n6-Z67" id="wh2-dE-95S"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="K10-vL-L2T" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2386.5" y="1230.5"/>
         </scene>
     </scenes>
     <resources>

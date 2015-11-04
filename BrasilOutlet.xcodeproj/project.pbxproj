@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		9510CFED1BE848940008404D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9510CFEC1BE848940008404D /* Social.framework */; };
+		9510CFEF1BE9A1A60008404D /* TopDiscountsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510CFEE1BE9A1A50008404D /* TopDiscountsCollectionViewController.swift */; };
 		9554E19D1BE0173600AC2563 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */; };
 		9554E1A31BE04C5700AC2563 /* DiscountsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554E1A21BE04C5700AC2563 /* DiscountsCollectionViewController.swift */; };
 		958BFB641BE7028D0062B108 /* CategoriesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 958BFB631BE7028D0062B108 /* CategoriesTableViewCell.swift */; };
@@ -54,6 +55,7 @@
 		4049798EFEB52FAB1A0F26EB /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		7F382DDCFA41C83F1F508B59 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9510CFEC1BE848940008404D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
+		9510CFEE1BE9A1A50008404D /* TopDiscountsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopDiscountsCollectionViewController.swift; sourceTree = "<group>"; };
 		9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
 		9554E1A21BE04C5700AC2563 /* DiscountsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DiscountsCollectionViewController.swift; sourceTree = "<group>"; };
 		958BFB631BE7028D0062B108 /* CategoriesTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesTableViewCell.swift; sourceTree = "<group>"; };
@@ -160,6 +162,7 @@
 				95C15FB41BD9C1B700BD329A /* Main.storyboard */,
 				95AC0C1A1BE31324001F7198 /* CategoriesTableViewController.swift */,
 				95A48C7E1BDEFCE000BA1486 /* ProductsCollectionViewController.swift */,
+				9510CFEE1BE9A1A50008404D /* TopDiscountsCollectionViewController.swift */,
 				9554E1A21BE04C5700AC2563 /* DiscountsCollectionViewController.swift */,
 				95A48C821BDF212000BA1486 /* API.swift */,
 				9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */,
@@ -391,6 +394,7 @@
 				95A48C7F1BDEFCE000BA1486 /* ProductsCollectionViewController.swift in Sources */,
 				95C15FB31BD9C1B700BD329A /* ViewController.swift in Sources */,
 				95AC0C1D1BE314C2001F7198 /* CategoryModel.swift in Sources */,
+				9510CFEF1BE9A1A60008404D /* TopDiscountsCollectionViewController.swift in Sources */,
 				9554E19D1BE0173600AC2563 /* ViewControllerProtocol.swift in Sources */,
 				95C15FB11BD9C1B700BD329A /* AppDelegate.swift in Sources */,
 				95AC0C1B1BE31325001F7198 /* CategoriesTableViewController.swift in Sources */,
