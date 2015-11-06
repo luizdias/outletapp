@@ -15,13 +15,15 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     
     @IBOutlet var myCollectionView: UICollectionView!
     
-    private var str : String?
+    var subCategory:String = ""
     var request: Alamofire.Request?
     var viewControllerDelegate : ViewControllerProtocol?
     var MyAPI = API()
     var tableData = ["Um", "Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete", "Oito"]
     var tableImages = ["sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg"]
     var productModelList: NSMutableArray = []
+    
+    private var str : String?
     
     func didReceiveResult(result: JSON) {
         let products: NSMutableArray = []
@@ -63,7 +65,12 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
+        MyAPI.post("/webservice/discount/discountlist.php", parameters: [
+            "idcity" : "7",
+            "cat" : subCategory,
+            "storeid" : 0,
+            "page" : "0"
+            ], delegate: self)
     
     }
 

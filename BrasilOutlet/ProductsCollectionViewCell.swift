@@ -28,7 +28,7 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var productDiscountDates: UILabel!
     
     @IBAction func favoriteProduct(sender: UIButton) {
-        self.productHeartButton.tintColor = UIColor.redColor()
+        self.productHeartButton.hidden = true
     }
     
     var delegate: ProductsCellDelegate?
@@ -42,6 +42,5 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     @IBAction func likeProduct(sender: UIButton) {
     }
     
-
     
 }

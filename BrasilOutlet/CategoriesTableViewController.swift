@@ -18,27 +18,42 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
     var tableData = ["Ops! Não foi possível carregar os dados."]
     var MyAPI = API()
     var categoryModelList: NSMutableArray = []
+    var subCategoryModelList: NSMutableArray = []
     
     func didReceiveResult(result: JSON) {
         let categories: NSMutableArray = []
+        let subCategories: NSMutableArray = []
         
         NSLog("Categories.didReceiveResult: \(result)")
         
         for (index,subJson):(String, JSON) in result {
-            let category = CategoryModel()
-            category.id = subJson["id"].stringValue
-            category.name = subJson["name"].stringValue
-            category.favorite = subJson["favorite"].stringValue
-            category.gender = subJson["gender"].stringValue
-            category.idfather = subJson["idfather"].stringValue
-            category.image_path = subJson["image_path"].stringValue
-            category.image = subJson["image"].stringValue
-            print("URL da imagem: \(category.image_path)")
-            categories.addObject(category)
+            if subJson["idfather"] == "0" {
+                let category = CategoryModel()
+                category.id = subJson["id"].stringValue
+                category.name = subJson["name"].stringValue
+                category.favorite = subJson["favorite"].stringValue
+                category.gender = subJson["gender"].stringValue
+                category.idfather = subJson["idfather"].stringValue
+                category.imagePath = subJson["image_path"].stringValue
+                category.image = subJson["image"].stringValue
+                print("URL da imagem: \(category.imagePath)")
+                categories.addObject(category)
+            } else {
+                let subCategory = CategoryModel()
+                subCategory.id = subJson["id"].stringValue
+                subCategory.name = subJson["name"].stringValue
+                subCategory.favorite = subJson["favorite"].stringValue
+                subCategory.gender = subJson["gender"].stringValue
+                subCategory.idfather = subJson["idfather"].stringValue
+                subCategory.imagePath = subJson["image_path"].stringValue
+                subCategories.addObject(subCategory)
+            }
         }
         
         categoryModelList = categories
-        print("Quantidade de itens after: \(categoryModelList.count)")
+        subCategoryModelList = subCategories
+        print("Quantidade de categorias after: \(categoryModelList.count)")
+        print("Quantidade de subCategorias after: \(subCategoryModelList.count)")
         
         // Make sure we are on the main thread, and update the UI.
         dispatch_async(dispatch_get_main_queue(), {
@@ -47,8 +62,6 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
     }
     
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations
@@ -105,7 +118,7 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
             
             //loading images from URLs Asyncronously
 //            let imageURL = (categoryArray.image_path)
-            let imageURL = "http://www.brasiloutlet.com/upload/categories/2.png"
+            let imageURL = categoryArray.imagePath
             cell.imageView?.image = nil
             cell.request?.cancel()
             cell.request = Alamofire.request(.GET, imageURL).responseImage() {
@@ -158,14 +171,18 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
     }
     */
 
-    /*
     // MARK: - Navigation
 
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
+        
+        if(segue.identifier == "subCategoriesView"){
+            let vc = segue.destinationViewController as! SubCategoriesTableViewController
+            vc.subCategoryModelList = self.subCategoryModelList
+        }
+        
     }
-    */
 
 }

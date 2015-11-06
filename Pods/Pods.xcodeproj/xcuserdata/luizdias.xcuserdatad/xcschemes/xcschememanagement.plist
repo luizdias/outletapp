@@ -19,6 +19,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>Onboard.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-BrasilOutlet.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,7 +52,7 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
-		<key>41EA96A5F0EFC7701E4756965B7533D3</key>
+		<key>0744FC7281AB9FD20DAC7F573AE70887</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -62,27 +67,32 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>47FF7E660C4AFA96D2D9B30C8FAD2970</key>
+		<key>690590559D7CEAB53D7873C1CF459034</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>6F560CD7684B098E080B2DDE3788EBFC</key>
+		<key>742749DE4BFE9E0FC1E33484054074CE</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D2B03B9FFCAF680B7578ACD92440FC7</key>
+		<key>B69CE86AD8345A1637A85E98371523B7</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>BA9CC6585012B58E741A7869F9031143</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>D7FF48F3092783E4E42B336F0DEF2D1A</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
 		<key>E61CE3B6DFA1FE6B3E296965C76C0E10</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>FEAEEBC602701A9A5A2D35BDCFFE74F8</key>
 		<dict>
 			<key>primary</key>
 			<true/>

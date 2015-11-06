@@ -15,7 +15,7 @@ class CategoryModel {
     var favorite = "1"
     var gender = " "
     var idfather = "2"
-    var image_path = " "
+    var imagePath = " "
     var image = " "
     
 }

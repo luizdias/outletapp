@@ -87,11 +87,13 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-BrasilOutletTests/Alamofire.framework"
   install_framework "Pods-BrasilOutletTests/KYDrawerController.framework"
   install_framework "Pods-BrasilOutletTests/MBProgressHUD.framework"
+  install_framework "Pods-BrasilOutletTests/Onboard.framework"
   install_framework "Pods-BrasilOutletTests/SwiftyJSON.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-BrasilOutletTests/Alamofire.framework"
   install_framework "Pods-BrasilOutletTests/KYDrawerController.framework"
   install_framework "Pods-BrasilOutletTests/MBProgressHUD.framework"
+  install_framework "Pods-BrasilOutletTests/Onboard.framework"
   install_framework "Pods-BrasilOutletTests/SwiftyJSON.framework"
 fi

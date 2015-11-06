@@ -34,6 +34,7 @@ pod 'MBProgressHUD', '~> 0.9.1'
 
 # This pod bellow may be used to create the tutorial:
 # pod 'Presentation', '~> 2.0'
+pod 'Onboard'
 
 # Form field Validation and Masking/Formatting:
 # pod 'Validation'

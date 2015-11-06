@@ -8,15 +8,71 @@
 
 import UIKit
 import CoreData
+import Onboard
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
+    let firstPage = OnboardingContentViewController(title: "Bem vindo ao BrasilOutlet", body: "Aqui você encontra milhares de descontos em um só lugar.", image: UIImage(named: "littleDudeSerious.png"), buttonText: "Text For Button") { () -> Void in
+        // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+    }
+    
+    let secondPage = OnboardingContentViewController(title: "Título 2", body: "Mensagem 2 entra aqui.", image: UIImage(named: "littleDudeSerious.png"), buttonText: "Botão") { () -> Void in
+        // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+    }
+    
+    let thirdPage = OnboardingContentViewController(title: "Terceira tela de tutorial", body: "Aqui entra a mensagem here.", image: UIImage(named: "littleDude.png"), buttonText: "Text For Button") { () -> Void in
+        // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+    }
+    
+    
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        
+        let defaults = NSUserDefaults.standardUserDefaults()
+        defaults.setObject("Coding Explorer", forKey: "userCityKey")
+        
+        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bgOnboarding.png"), contents: [firstPage, secondPage, thirdPage])
+        //        onboardingVC.fontName = "Helvetica-Light";
+        onboardingVC.pageControl.currentPageIndicatorTintColor = UIColor.grayColor()
+        onboardingVC.pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
+        onboardingVC.shouldMaskBackground = false
+        onboardingVC.titleFontSize = 28
+        onboardingVC.titleTextColor = UIColor.blackColor()
+        onboardingVC.bodyFontSize = 22
+        onboardingVC.bodyTextColor = UIColor.blackColor()
+        onboardingVC.iconWidth = CGFloat(100.0)
+        onboardingVC.iconHeight = CGFloat(200.0)
+        onboardingVC.topPadding = 100
+        onboardingVC.underIconPadding = 20
+        onboardingVC.underTitlePadding = 15
+//        onboardingVC.bottomPadding = 20
+        onboardingVC.skipButton.setTitle("Pular", forState: UIControlState.Normal)
+        onboardingVC.skipButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
+        onboardingVC.skipButton.backgroundColor = UIColor.clearColor()
+        onboardingVC.skipButton.layer.cornerRadius = 5
+        onboardingVC.skipButton.layer.borderWidth = 1
+        onboardingVC.skipButton.layer.borderColor = UIColor.clearColor().CGColor
+        onboardingVC.shouldFadeTransitions = true
+        onboardingVC.allowSkipping = true
+        
+        onboardingVC.skipHandler = ({
+            self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("StartHere")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
+        })
+        
+        self.window?.rootViewController = onboardingVC
+        
+        if let userCity = defaults.stringForKey("userCityKey")
+        {
+            print(userCity)
+        }
         return true
     }
 

@@ -2,12 +2,14 @@ PODS:
   - Alamofire (3.1.0)
   - KYDrawerController (1.1.1)
   - MBProgressHUD (0.9.1)
+  - Onboard (2.1.7)
   - SwiftyJSON (2.3.1)
 
 DEPENDENCIES:
   - Alamofire (~> 3.0)
   - KYDrawerController
   - MBProgressHUD (~> 0.9.1)
+  - Onboard
   - SwiftyJSON (from `https://github.com/SwiftyJSON/SwiftyJSON.git`)
 
 EXTERNAL SOURCES:
@@ -23,6 +25,7 @@ SPEC CHECKSUMS:
   Alamofire: 415bd7f56197722978759078486689f7ef913dce
   KYDrawerController: 33f16abd6ce2b0cc7d6e2c7df2502b5dab23ecb6
   MBProgressHUD: c47f2c166c126cf2ce36498d80f33e754d4e93ad
+  Onboard: 87648089e1b76d13b4f5bf8f7a1cdb144092f0af
   SwiftyJSON: 592b53bee5ef3dd9b3bebc6b9cb7ee35426ae8c3
 
 COCOAPODS: 0.39.0
