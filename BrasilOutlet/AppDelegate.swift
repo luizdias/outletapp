@@ -33,13 +33,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("Coding Explorer", forKey: "userCityKey")
+        defaults.setObject("7", forKey: "userCityKey")
         
         let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bgOnboarding.png"), contents: [firstPage, secondPage, thirdPage])
         //        onboardingVC.fontName = "Helvetica-Light";
         onboardingVC.pageControl.currentPageIndicatorTintColor = UIColor.grayColor()
         onboardingVC.pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
         onboardingVC.shouldMaskBackground = false
+        onboardingVC.shouldBlurBackground = false
+        onboardingVC.shouldFadeTransitions = false
         onboardingVC.titleFontSize = 28
         onboardingVC.titleTextColor = UIColor.blackColor()
         onboardingVC.bodyFontSize = 22
@@ -56,22 +58,26 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingVC.skipButton.layer.cornerRadius = 5
         onboardingVC.skipButton.layer.borderWidth = 1
         onboardingVC.skipButton.layer.borderColor = UIColor.clearColor().CGColor
-        onboardingVC.shouldFadeTransitions = true
         onboardingVC.allowSkipping = true
         
+        self.window?.backgroundColor = UIColor.whiteColor()
+        if defaults.boolForKey("shouldShowOnboarding") == true || defaults.stringForKey("shouldShowOnboarding") == nil {
+            self.window?.rootViewController = onboardingVC
+        }
+        
         onboardingVC.skipHandler = ({
+            defaults.setBool(false, forKey: "shouldShowOnboardingScreen")
             self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+            self.window?.backgroundColor = UIColor.whiteColor()
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
             let initialViewController = storyboard.instantiateViewControllerWithIdentifier("StartHere")
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         })
         
-        self.window?.rootViewController = onboardingVC
-        
         if let userCity = defaults.stringForKey("userCityKey")
         {
-            print(userCity)
+            print("Cidade do usuário: \(userCity)")
         }
         return true
     }

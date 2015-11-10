@@ -74,9 +74,7 @@ class API {
                     print("POST Error \(error)")
                 }
                 
-                        }
-
-        
+        }
         
     }
     

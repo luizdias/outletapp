@@ -15,12 +15,13 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
 
     var locManager = CLLocationManager()
     var request: Alamofire.Request?
-    var tableData = ["Ops! Não foi possível carregar os dados."]
+    var tableData = ["Carregando os dados..."]
     var MyAPI = API()
     var categoryModelList: NSMutableArray = []
     var subCategoryModelList: NSMutableArray = []
     
     func didReceiveResult(result: JSON) {
+        self.hideHUD()
         let categories: NSMutableArray = []
         let subCategories: NSMutableArray = []
         
@@ -73,6 +74,7 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
         // to test localhost change the path to this bellow:
         //        MyAPI.get("/db")
 
+        self.showHUD()
         MyAPI.post("/webservice/category/discountcategorylist.php", parameters: [ "idcity" : "7", "gender" : "1"  ], delegate: self)
         
 

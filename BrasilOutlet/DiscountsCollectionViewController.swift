@@ -22,8 +22,9 @@ class DiscountsCollectionViewController: UICollectionViewController, APIProtocol
     var productModelList: NSMutableArray = []
     
     func didReceiveResult(result: JSON) {
+        self.hideHUD()
+
         let products: NSMutableArray = []
-        
         NSLog("Product.didReceiveResult: \(result)")
         
         for (index,subJson):(String, JSON) in result {
@@ -57,6 +58,7 @@ class DiscountsCollectionViewController: UICollectionViewController, APIProtocol
 
     override func loadView() {
         super.loadView()
+        self.showHUD()
         MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
     }
     

@@ -26,8 +26,9 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     private var str : String?
     
     func didReceiveResult(result: JSON) {
-        let products: NSMutableArray = []
+        self.hideHUD()
         
+        let products: NSMutableArray = []        
         NSLog("Product.didReceiveResult: \(result)")
         
         for (index,subJson):(String, JSON) in result {
@@ -64,14 +65,14 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
+        self.showHUD()
         MyAPI.post("/webservice/discount/discountlist.php", parameters: [
             "idcity" : "7",
             "cat" : subCategory,
             "storeid" : 0,
             "page" : "0"
             ], delegate: self)
-    
     }
 
     override func didReceiveMemoryWarning() {
@@ -96,9 +97,9 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     }
 
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
 
-        cell.delegate = self
+//        cell.delegate = self
         if productModelList.count != 0{
             let productArray = productModelList[indexPath.row] as! ProductModel
             cell.productActualPrice.text = productArray.discountPrice

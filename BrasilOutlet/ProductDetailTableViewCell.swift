@@ -1,22 +1,22 @@
 //
-//  ProductsCollectionViewCell.swift
+//  ProductDetailTableViewCell.swift
 //  BrasilOutlet
 //
-//  Created by Luiz Dias on 10/26/15.
+//  Created by Luiz Dias on 11/9/15.
 //  Copyright © 2015 Luiz Dias. All rights reserved.
 //
 
 import UIKit
 import Alamofire
 
-protocol ProductsCellDelegate {
-    func cellButtonTapped(cell: ProductsCollectionViewCell)
+protocol ProductDetailTableViewCellDelegate {
+    func cellTapped(cell: ProductDetailTableViewCell)
 }
 
-class ProductsCollectionViewCell: UICollectionViewCell {
+class ProductDetailTableViewCell: UITableViewCell {
     
     var request: Alamofire.Request?
-    
+
     @IBOutlet var productDescription: UILabel!
     @IBOutlet var productDiscountValue: UIButton!
     @IBOutlet var productActualPrice: UILabel!
@@ -28,24 +28,35 @@ class ProductsCollectionViewCell: UICollectionViewCell {
     @IBOutlet var productDiscountDates: UILabel!
     
     @IBAction func favoriteProduct(sender: UIButton) {
-        
+
     }
     
-    var delegate: ProductsCellDelegate?
+//    var delegate: ProductsCellDelegate?
     
     @IBAction func shareProduct(sender: UIButton) {
         
-        delegate?.cellButtonTapped(self)
+//        delegate?.cellTapped(self)
         
     }
     
     @IBAction func likeProduct(sender: UIButton) {
+        
     }
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // The Favorite/Heart button is hidden while the User Login is not implemented.
         self.productHeartButton.hidden = true
+
     }
+
+    override func setSelected(selected: Bool, animated: Bool) {
+        super.setSelected(selected, animated: animated)
+
+        // Configure the view for the selected state
+    }
+
+    
     
 }

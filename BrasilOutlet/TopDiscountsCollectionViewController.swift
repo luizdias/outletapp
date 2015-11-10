@@ -24,8 +24,9 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     var productModelList: NSMutableArray = []
     
     func didReceiveResult(result: JSON) {
-        let products: NSMutableArray = []
+        self.hideHUD()
         
+        let products: NSMutableArray = []
         NSLog("Product.didReceiveResult: \(result)")
         
         for (index,subJson):(String, JSON) in result {
@@ -63,8 +64,8 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.showHUD()
         MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
-        
     }
     
     override func didReceiveMemoryWarning() {
@@ -89,7 +90,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("Cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
+        let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
         
         cell.delegate = self
         if productModelList.count != 0{
@@ -132,13 +133,24 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
                 shareToFacebook.addImage(image)
             }
         }
-        
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
     }
     
     
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("selecionou uma celula!")
+        self.performSegueWithIdentifier("productDetailView", sender: indexPath)
     }
     
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        // Get the new view controller using segue.destinationViewController.
+        // Pass the selected object to the new view controller.
+        
+        if(segue.identifier == "productDetailView"){
+                let vc = segue.destinationViewController as! ProductDetailTableViewController
+                vc.productModelList = self.productModelList
+            }
+        }
+        
 }
