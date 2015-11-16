@@ -16,6 +16,8 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     @IBOutlet var myCollectionView: UICollectionView!
     
     private var str : String?
+    var selectedCell = ProductsCollectionViewCell()
+    
     var request: Alamofire.Request?
     var viewControllerDelegate : ViewControllerProtocol?
     var MyAPI = API()
@@ -73,9 +75,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {
-        super.viewDidAppear(true)
-    }
+    override func viewWillAppear(animated: Bool) {}
     
     // MARK: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -94,11 +94,12 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         
         cell.delegate = self
         if productModelList.count != 0{
+            print("retornou uma celula com conteúdo da requisicao")
             let productArray = productModelList[indexPath.row] as! ProductModel
-            cell.productActualPrice.text = productArray.discountPrice
+            cell.productActualPrice.text = "R$\(productArray.discountPrice)"
             cell.productDescription.text = productArray.description
-            cell.productOriginalPrice.text = productArray.fullPrice
-            cell.productDiscountValue.titleLabel?.text = "\(productArray.discountPercent)%"
+            cell.productOriginalPrice.text = "R$\(productArray.fullPrice)"
+            cell.productDiscountValue.setTitle("\(productArray.discountPercent)%", forState: UIControlState.Normal)
             cell.productDiscountDates.text = ("Promoção válida de: \n" + "\(productArray.startDate) até \(productArray.endDate)")
             
             //loading images from URLs Asyncronously
@@ -110,47 +111,52 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
                 if let image = response.result.value {
                     cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
                     cell.productImage.image = image
+                    print("response de uma imagem")
                 }
             }
+        } else {
+            print("retornou célula padrão.")
         }
         return cell
     }
     
     func cellButtonTapped(cell: ProductsCollectionViewCell) {
         let indexPath = myCollectionView.indexPathForCell(cell)!
-        let productArray = productModelList[indexPath.row] as! ProductModel
+        let product = productModelList[indexPath.row] as! ProductModel
         let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        shareToFacebook.setInitialText(productArray.description)
-        let productURL = NSURL(string: productArray.image)
+        let productURL = NSURL(string: product.image)
+        shareToFacebook.setInitialText(product.description)
         shareToFacebook.addURL(productURL)
-        
+
         //loading images from URLs Asyncronously
-        let imageURL = (productArray.image)
+        let imageURL = (product.image)
         self.request?.cancel()
         self.request = Alamofire.request(.GET, imageURL).responseImage() {
             [weak self] response in
             if let image = response.result.value {
-                shareToFacebook.addImage(image)
+                shareToFacebook.addImage(cell.productImage.image)
             }
         }
+        
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
     }
+
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        print("didSelectItem at index path")
+//        super.viewDidAppear(true)
+//        self.performSegueWithIdentifier("productDetailView", sender: indexPath)
+//        self.selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! ProductsCollectionViewCell
+//    }
     
-    
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("selecionou uma celula!")
-        self.performSegueWithIdentifier("productDetailView", sender: indexPath)
-    }
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-        
+        print("entrou prepare for segue")
+        var indexPaths = self.myCollectionView.indexPathsForSelectedItems()
         if(segue.identifier == "productDetailView"){
                 let vc = segue.destinationViewController as! ProductDetailTableViewController
-                vc.productModelList = self.productModelList
-            }
+                vc.collectionViewCell = myCollectionView.cellForItemAtIndexPath(indexPaths![0]) as! ProductsCollectionViewCell
+                print("Segue identifier eh productDetailView")
         }
-        
+    }
 }

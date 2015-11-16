@@ -11,26 +11,17 @@ import Alamofire
 
 class ProductDetailTableViewController: UITableViewController {
     
-    var tableData = ["Carregando os dados..."]
-    var productModelList: NSMutableArray = []
-    var row = 1
+    var collectionViewCell = ProductsCollectionViewCell()
+//    var productCell = ProductDetailTableViewCell()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
         
-    }
-    
-    override func viewDidAppear(animated: Bool) {
-        if productModelList.count != 0{
-            tableView.reloadData()
-//            tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Top, animated: true)
-        }
     }
     
     override func didReceiveMemoryWarning() {
@@ -45,46 +36,28 @@ class ProductDetailTableViewController: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if productModelList.count != 0 {
-            return productModelList.count
-        } else {
-            return tableData.count
-        }
+        return 1
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ProductDetailTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProductDetailTableViewCell
-        if productModelList.count != 0 {
-            let productArray = productModelList[indexPath.row] as! ProductModel
-            cell.productActualPrice.text = productArray.discountPrice
-            cell.productDescription.text = productArray.description
-            cell.productOriginalPrice.text = productArray.fullPrice
-            cell.productDiscountValue.titleLabel?.text = "\(productArray.discountPercent)%"
-            cell.productDiscountDates.text = ("Promoção válida de: \n" + "\(productArray.startDate) até \(productArray.endDate)")
-            
-            //loading images from URLs Asyncronously
-            let imageURL = (productArray.image)
-            cell.productImage.image = nil
-            cell.request?.cancel()
-            cell.request = Alamofire.request(.GET, imageURL).responseImage() {
-                [weak self] response in
-                if let image = response.result.value {
-                    cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
-                    cell.productImage.image = image
-                }
-            }
-        } else {
-            cell.textLabel!.text = tableData[0]
+
+        if let discountValue = self.collectionViewCell.productDiscountValue.titleLabel {
+            cell.productDiscountValue.setTitle(discountValue.text, forState: UIControlState.Normal)
         }
+        cell.productActualPrice.text = self.collectionViewCell.productActualPrice.text
+        cell.productDescription.text = self.collectionViewCell.productDescription.text
+        cell.productOriginalPrice.text = self.collectionViewCell.productOriginalPrice.text
+        let productDiscountDatesWithoutLineFeed = self.collectionViewCell.productDiscountDates.text!.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
+        print("\(self.collectionViewCell.productDiscountDates.text)")
+        cell.productDiscountDates.text = productDiscountDatesWithoutLineFeed
+        print("\(cell.productDiscountDates.text)")
+        cell.productImage.image = nil
+        cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
+        cell.productImage.image = self.collectionViewCell.productImage.image
         return cell
     }
     
-    func scrollToSelectedRow() {
-        let selectedRows = self.tableView.indexPathsForSelectedRows
-        if let selectedRow:NSIndexPath = selectedRows![0] {
-            self.tableView.scrollToRowAtIndexPath(selectedRow, atScrollPosition: .Middle, animated: true)
-        }
-    }
     
     /*
     // Override to support conditional editing of the table view.
