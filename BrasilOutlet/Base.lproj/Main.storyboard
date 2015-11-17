@@ -436,22 +436,22 @@
         <scene sceneID="qdd-Zz-vKX">
             <objects>
                 <tableViewController id="ggy-6i-0bp" customClass="ProductDetailTableViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="448" sectionHeaderHeight="28" sectionFooterHeight="28" id="umm-5p-8EE">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="690" sectionHeaderHeight="28" sectionFooterHeight="28" id="umm-5p-8EE">
+                        <rect key="frame" x="0.0" y="0.0" width="507" height="768"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="448" id="68J-FM-8eW" customClass="ProductDetailTableViewCell" customModule="BrasilOutlet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="448"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="690" id="68J-FM-8eW" customClass="ProductDetailTableViewCell" customModule="BrasilOutlet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="507" height="690"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="68J-FM-8eW" id="d3a-kj-z1q">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="447"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="507" height="689"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4M-nC-tBf">
-                                            <rect key="frame" x="8" y="0.0" width="359" height="439"/>
+                                            <rect key="frame" x="8" y="0.0" width="359" height="689"/>
                                             <subviews>
                                                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="SampleProduct" translatesAutoresizingMaskIntoConstraints="NO" id="73b-Az-ZOy">
                                                     <rect key="frame" x="8" y="8" width="343" height="313"/>
@@ -474,7 +474,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sLi-CA-P4n">
                                                     <rect key="frame" x="166" y="399" width="158" height="29"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="18"/>
+                                                    <fontDescription key="fontDescription" type="boldSystem" pointSize="22"/>
                                                     <color key="textColor" red="1" green="0.62640086210000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -487,7 +487,7 @@
                                                     </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7TH-6G-rbX">
-                                                    <rect key="frame" x="11" y="408" width="19" height="23"/>
+                                                    <rect key="frame" x="11" y="401" width="19" height="23"/>
                                                     <animations/>
                                                     <state key="normal" image="Like"/>
                                                     <connections>
@@ -515,7 +515,7 @@
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dJ7-as-XDT">
                                                     <rect key="frame" x="37" y="403" width="121" height="21"/>
                                                     <animations/>
-                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="12"/>
+                                                    <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="16"/>
                                                     <color key="textColor" white="0.75" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
@@ -533,6 +533,48 @@
                                                     </attributedString>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Descrição" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OeU-DN-nYL">
+                                                    <rect key="frame" x="141" y="436" width="77" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Loja" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ocp-48-P6T">
+                                                    <rect key="frame" x="163" y="517" width="32" height="21"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="a5h-s5-G4a">
+                                                    <rect key="frame" x="11" y="457" width="340" height="52"/>
+                                                    <animations/>
+                                                    <attributedString key="attributedText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" usesAttributedText="YES" lineBreakMode="tailTruncation" numberOfLines="9" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q2o-k5-8gi">
+                                                    <rect key="frame" x="11" y="541" width="340" height="97"/>
+                                                    <animations/>
+                                                    <attributedString key="attributedText"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="na9-UV-IWa">
+                                                    <rect key="frame" x="326" y="513" width="25" height="25"/>
+                                                    <animations/>
+                                                    <state key="normal" image="Email"/>
+                                                    <connections>
+                                                        <action selector="mailStore:" destination="68J-FM-8eW" eventType="touchUpInside" id="L4F-yn-dfR"/>
+                                                    </connections>
+                                                </button>
+                                                <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tb9-fb-Cta">
+                                                    <rect key="frame" x="11" y="513" width="25" height="25"/>
+                                                    <animations/>
+                                                    <state key="normal" image="Phone"/>
+                                                    <connections>
+                                                        <action selector="callStore:" destination="68J-FM-8eW" eventType="touchUpInside" id="fYk-gA-daK"/>
+                                                    </connections>
+                                                </button>
                                             </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -551,8 +593,10 @@
                                     <outlet property="productHeartButton" destination="Igj-Fr-sz6" id="Mn9-L5-qPl"/>
                                     <outlet property="productImage" destination="73b-Az-ZOy" id="1QV-Zo-Gt0"/>
                                     <outlet property="productLikeButton" destination="7TH-6G-rbX" id="Rom-54-YWK"/>
+                                    <outlet property="productLongDescription" destination="a5h-s5-G4a" id="dai-ry-7q8"/>
                                     <outlet property="productOriginalPrice" destination="dJ7-as-XDT" id="3HH-YW-ji6"/>
                                     <outlet property="productShareButton" destination="siX-d4-K9s" id="OuH-M3-zpE"/>
+                                    <outlet property="storeDetails" destination="Q2o-k5-8gi" id="cIw-bS-4k0"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -562,10 +606,11 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Detalhes" id="jjG-dp-CEZ"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad-1/2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXi-gB-mAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2366.5" y="386.5"/>
+            <point key="canvasLocation" x="2366.5" y="386"/>
         </scene>
         <!--Descontos-->
         <scene sceneID="s5h-hj-v4l">
@@ -725,9 +770,11 @@
     <resources>
         <image name="Categories" width="25" height="25"/>
         <image name="DiscountOfTheDay" width="25" height="25"/>
+        <image name="Email" width="25" height="25"/>
         <image name="Heart" width="48" height="48"/>
         <image name="Like" width="48" height="48"/>
         <image name="NearStores" width="25" height="25"/>
+        <image name="Phone" width="25" height="25"/>
         <image name="SampleProduct" width="500" height="500"/>
         <image name="Share" width="48" height="48"/>
     </resources>

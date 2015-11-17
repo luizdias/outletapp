@@ -28,18 +28,18 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         
         for (index,subJson):(String, JSON) in result {
             let store = StoreModel()
-            store.id = subJson["id"].stringValue
+            store.id = subJson["id"].intValue
             store.name = subJson["name"].stringValue
             store.socialName = subJson["socialName"].stringValue
             store.cnpj = subJson["cnpj"].stringValue
             store.address = subJson["address"].stringValue
             store.latCoordinate = subJson["latCoordinate"].stringValue
             store.longCoordinate = subJson["longCoordinate"].stringValue
-            store.cityId = subJson["cityId"].stringValue
+            store.cityId = subJson["cityId"].intValue
             store.favorite = subJson["favorite"].stringValue
-            store.neighborId = subJson["neighborId"].stringValue
+            store.neighborId = subJson["neighborId"].intValue
             store.neighborName = subJson["neighborName"].stringValue
-            store.shoppingId = subJson["shoppingId"].stringValue
+            store.shoppingId = subJson["shoppingId"].intValue
             store.telephone1 = subJson["telephone1"].stringValue
             store.telephone2 = subJson["telephone2"].stringValue
             store.subscriptionPlan = subJson["subscriptionPlan"].stringValue

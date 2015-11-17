@@ -31,35 +31,8 @@ class ProductModel {
     var startDate = " "
     var title = " "
     
-    var category = [
-        "favorite" : " ",
-        "gender" : " ",
-        "id" : 105,
-        "idfather" : 2,
-        "image" : " ",
-        "image_path"  : " ",
-        "name" : " "
-]
-    var store = [
-        "address" : " ",
-        "cityId" : " ",
-        "cnpj" : " ",
-        "favorite" : " ",
-        "id" : 28,
-        "latCoordinate" : " ",
-        "longCoordinate" : " ",
-        "name" : " ",
-        "neighborId" : 376,
-        "neighborName" : " ",
-        "shoppingId" : " ",
-        "shoppingName" : " ",
-        "socialName" : " ",
-        "subscriptionDiscountsLimit" : " ",
-        "subscriptionExpirationDate" : " ",
-        "subscriptionPlan" : " ",
-        "telephone1" : " ",
-        "telephone2" : " "
-    ]
+    var category = CategoryModel()
+    var store = StoreModel()
 
     
 }

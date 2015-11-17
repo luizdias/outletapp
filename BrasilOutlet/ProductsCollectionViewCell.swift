@@ -9,8 +9,9 @@
 import UIKit
 import Alamofire
 
-protocol ProductsCellDelegate {
-    func cellButtonTapped(cell: ProductsCollectionViewCell)
+protocol ProductsCollectionViewCellDelegate {
+    func cellShareButtonTapped(cell: ProductsCollectionViewCell)
+    func cellLikeButtonTapped(cell: ProductsCollectionViewCell)
 }
 
 class ProductsCollectionViewCell: UICollectionViewCell {
@@ -31,15 +32,17 @@ class ProductsCollectionViewCell: UICollectionViewCell {
         
     }
     
-    var delegate: ProductsCellDelegate?
+    var delegate: ProductsCollectionViewCellDelegate?
     
     @IBAction func shareProduct(sender: UIButton) {
         
-        delegate?.cellButtonTapped(self)
+        delegate?.cellShareButtonTapped(self)
         
     }
     
     @IBAction func likeProduct(sender: UIButton) {
+        
+        delegate?.cellLikeButtonTapped(self)
     }
     
     override func awakeFromNib() {

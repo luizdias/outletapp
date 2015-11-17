@@ -10,6 +10,7 @@
 		9510CFED1BE848940008404D /* Social.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 9510CFEC1BE848940008404D /* Social.framework */; };
 		9510CFEF1BE9A1A60008404D /* TopDiscountsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9510CFEE1BE9A1A50008404D /* TopDiscountsCollectionViewController.swift */; };
 		9524BD2F1BEB408E00225624 /* SubCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524BD2E1BEB408D00225624 /* SubCategoriesTableViewController.swift */; };
+		95468F2C1BFA9B99000C1D11 /* ProductsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95468F2B1BFA9B99000C1D11 /* ProductsCollectionViewController.swift */; };
 		954F2F0D1BF0356C0062275A /* NearestsStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F2F0C1BF0356C0062275A /* NearestsStoresTableViewController.swift */; };
 		954F2F111BF036B60062275A /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F2F101BF036B60062275A /* StoreModel.swift */; };
 		9554E19D1BE0173600AC2563 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */; };
@@ -24,7 +25,6 @@
 		95A48C791BDEF76B00BA1486 /* ic_heart.png in Resources */ = {isa = PBXBuildFile; fileRef = 95A48C781BDEF76B00BA1486 /* ic_heart.png */; };
 		95A48C7B1BDEF77500BA1486 /* ic_like.png in Resources */ = {isa = PBXBuildFile; fileRef = 95A48C7A1BDEF77500BA1486 /* ic_like.png */; };
 		95A48C7D1BDEFB2B00BA1486 /* sample-product.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 95A48C7C1BDEFB2B00BA1486 /* sample-product.jpg */; };
-		95A48C7F1BDEFCE000BA1486 /* ProductsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A48C7E1BDEFCE000BA1486 /* ProductsCollectionViewController.swift */; };
 		95A48C811BDF205100BA1486 /* APIProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A48C801BDF205000BA1486 /* APIProtocol.swift */; };
 		95A48C831BDF212000BA1486 /* API.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A48C821BDF212000BA1486 /* API.swift */; };
 		95A48C851BDF296700BA1486 /* ProductModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95A48C841BDF296700BA1486 /* ProductModel.swift */; };
@@ -67,6 +67,7 @@
 		9510CFEC1BE848940008404D /* Social.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Social.framework; path = System/Library/Frameworks/Social.framework; sourceTree = SDKROOT; };
 		9510CFEE1BE9A1A50008404D /* TopDiscountsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TopDiscountsCollectionViewController.swift; sourceTree = "<group>"; };
 		9524BD2E1BEB408D00225624 /* SubCategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoriesTableViewController.swift; sourceTree = "<group>"; };
+		95468F2B1BFA9B99000C1D11 /* ProductsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewController.swift; sourceTree = "<group>"; };
 		954F2F0C1BF0356C0062275A /* NearestsStoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestsStoresTableViewController.swift; sourceTree = "<group>"; };
 		954F2F101BF036B60062275A /* StoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -81,7 +82,6 @@
 		95A48C781BDEF76B00BA1486 /* ic_heart.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_heart.png; sourceTree = "<group>"; };
 		95A48C7A1BDEF77500BA1486 /* ic_like.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ic_like.png; sourceTree = "<group>"; };
 		95A48C7C1BDEFB2B00BA1486 /* sample-product.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "sample-product.jpg"; sourceTree = "<group>"; };
-		95A48C7E1BDEFCE000BA1486 /* ProductsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewController.swift; sourceTree = "<group>"; };
 		95A48C801BDF205000BA1486 /* APIProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIProtocol.swift; sourceTree = "<group>"; };
 		95A48C821BDF212000BA1486 /* API.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = API.swift; sourceTree = "<group>"; };
 		95A48C841BDF296700BA1486 /* ProductModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductModel.swift; sourceTree = "<group>"; };
@@ -185,10 +185,10 @@
 				95AC0C1A1BE31324001F7198 /* CategoriesTableViewController.swift */,
 				95D67BF11BF146B2006257C0 /* ProductDetailTableViewController.swift */,
 				95D67BF31BF14788006257C0 /* ProductDetailTableViewCell.swift */,
+				95468F2B1BFA9B99000C1D11 /* ProductsCollectionViewController.swift */,
 				954F2F0C1BF0356C0062275A /* NearestsStoresTableViewController.swift */,
 				95D67BEF1BF1374C006257C0 /* UIViewControllerExtension.swift */,
 				9524BD2E1BEB408D00225624 /* SubCategoriesTableViewController.swift */,
-				95A48C7E1BDEFCE000BA1486 /* ProductsCollectionViewController.swift */,
 				9510CFEE1BE9A1A50008404D /* TopDiscountsCollectionViewController.swift */,
 				9554E1A21BE04C5700AC2563 /* DiscountsCollectionViewController.swift */,
 				95A48C821BDF212000BA1486 /* API.swift */,
@@ -426,7 +426,6 @@
 				954F2F0D1BF0356C0062275A /* NearestsStoresTableViewController.swift in Sources */,
 				95A48C751BDEE73800BA1486 /* ProductsCollectionViewCell.swift in Sources */,
 				95D67BF41BF14788006257C0 /* ProductDetailTableViewCell.swift in Sources */,
-				95A48C7F1BDEFCE000BA1486 /* ProductsCollectionViewController.swift in Sources */,
 				95C15FB31BD9C1B700BD329A /* ViewController.swift in Sources */,
 				95AC0C1D1BE314C2001F7198 /* CategoryModel.swift in Sources */,
 				9510CFEF1BE9A1A60008404D /* TopDiscountsCollectionViewController.swift in Sources */,
@@ -434,6 +433,7 @@
 				9554E19D1BE0173600AC2563 /* ViewControllerProtocol.swift in Sources */,
 				95D67BF21BF146B2006257C0 /* ProductDetailTableViewController.swift in Sources */,
 				95C15FB11BD9C1B700BD329A /* AppDelegate.swift in Sources */,
+				95468F2C1BFA9B99000C1D11 /* ProductsCollectionViewController.swift in Sources */,
 				95AC0C1B1BE31325001F7198 /* CategoriesTableViewController.swift in Sources */,
 				95611DF91BEC42CD00EAF8ED /* WalkthroughViewController.swift in Sources */,
 				954F2F111BF036B60062275A /* StoreModel.swift in Sources */,

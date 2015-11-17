@@ -11,7 +11,7 @@ import Alamofire
 import SwiftyJSON
 import Social
 
-class ProductsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCellDelegate, APIProtocol {
+class ProductsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCollectionViewCellDelegate, APIProtocol {
     
     @IBOutlet var myCollectionView: UICollectionView!
     
@@ -123,16 +123,16 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         return cell
     }
     
-    func cellButtonTapped(cell: ProductsCollectionViewCell) {
+    func cellShareButtonTapped(cell: ProductsCollectionViewCell) {
         let indexPath = myCollectionView.indexPathForCell(cell)!
-        let productArray = productModelList[indexPath.row] as! ProductModel
+        let productToShare = productModelList[indexPath.row] as! ProductModel
         let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        shareToFacebook.setInitialText(productArray.description)
-        let productURL = NSURL(string: productArray.image)
+        shareToFacebook.setInitialText(productToShare.description)
+        let productURL = NSURL(string: productToShare.image)
         shareToFacebook.addURL(productURL)
         
         //loading images from URLs Asyncronously
-        let imageURL = (productArray.image)
+        let imageURL = (productToShare.image)
         self.request?.cancel()
         self.request = Alamofire.request(.GET, imageURL).responseImage() {
             [weak self] response in
@@ -142,6 +142,19 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         }
 
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
+    }
+
+    
+    func cellLikeButtonTapped(cell: ProductsCollectionViewCell) {
+        let indexPath = myCollectionView.indexPathForCell(cell)!
+        let productToLike = productModelList[indexPath.row] as! ProductModel
+        let likeURL = "http://www.brasiloutlet.com/webservice/discount/like.php?discountid=\(productToLike.id)&type=PUT"
+        cell.request = Alamofire.request(.POST, likeURL).responseImage() {
+            [weak self] response in
+            if let likeResult = response.result.value {
+                print("SE LIKE OK: Trocar cor do botão!")
+            }
+        }
     }
 
 

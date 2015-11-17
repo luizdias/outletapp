@@ -10,7 +10,10 @@ import UIKit
 import Alamofire
 
 protocol ProductDetailTableViewCellDelegate {
-    func cellTapped(cell: ProductDetailTableViewCell)
+    func cellShareButtonTapped(cell: ProductDetailTableViewCell)
+    func cellLikeButtonTapped(cell: ProductDetailTableViewCell)
+    func cellMailButtonTapped(cell: ProductDetailTableViewCell)
+    func cellPhoneButtonTapped(cell: ProductDetailTableViewCell)
 }
 
 class ProductDetailTableViewCell: UITableViewCell {
@@ -26,24 +29,40 @@ class ProductDetailTableViewCell: UITableViewCell {
     @IBOutlet var productLikeButton: UIButton!
     @IBOutlet var productShareButton: UIButton!
     @IBOutlet var productDiscountDates: UILabel!
+    @IBOutlet var productLongDescription: UILabel!
+    @IBOutlet var storeDetails: UILabel!
     
     @IBAction func favoriteProduct(sender: UIButton) {
 
     }
     
-//    var delegate: ProductsCellDelegate?
+
+    var delegate: ProductDetailTableViewCellDelegate?
     
     @IBAction func shareProduct(sender: UIButton) {
         
-//        delegate?.cellTapped(self)
+        delegate?.cellShareButtonTapped(self)
         
     }
     
     @IBAction func likeProduct(sender: UIButton) {
         
+        delegate?.cellLikeButtonTapped(self)
+        
     }
 
-    
+    @IBAction func callStore(sender: UIButton) {
+
+        delegate?.cellPhoneButtonTapped(self)
+        
+    }
+
+    @IBAction func mailStore(sender: UIButton) {
+
+        delegate?.cellMailButtonTapped(self)
+        
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
         // The Favorite/Heart button is hidden while the User Login is not implemented.

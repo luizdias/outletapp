@@ -8,14 +8,16 @@
 
 import UIKit
 import Alamofire
+import Social
 
-class ProductDetailTableViewController: UITableViewController {
+class ProductDetailTableViewController: UITableViewController, ProductDetailTableViewCellDelegate {
     
     var collectionViewCell = ProductsCollectionViewCell()
-//    var productCell = ProductDetailTableViewCell()
+    var selectedProductData = ProductModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
         
@@ -42,11 +44,14 @@ class ProductDetailTableViewController: UITableViewController {
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell:ProductDetailTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! ProductDetailTableViewCell
 
+        cell.delegate = self
+        
         if let discountValue = self.collectionViewCell.productDiscountValue.titleLabel {
             cell.productDiscountValue.setTitle(discountValue.text, forState: UIControlState.Normal)
         }
         cell.productActualPrice.text = self.collectionViewCell.productActualPrice.text
         cell.productDescription.text = self.collectionViewCell.productDescription.text
+        cell.productLongDescription.text = self.collectionViewCell.productDescription.text
         cell.productOriginalPrice.text = self.collectionViewCell.productOriginalPrice.text
         let productDiscountDatesWithoutLineFeed = self.collectionViewCell.productDiscountDates.text!.stringByReplacingOccurrencesOfString("\n", withString: "", options: NSStringCompareOptions.LiteralSearch, range: nil)
         print("\(self.collectionViewCell.productDiscountDates.text)")
@@ -55,9 +60,53 @@ class ProductDetailTableViewController: UITableViewController {
         cell.productImage.image = nil
         cell.productImage.contentMode = UIViewContentMode.ScaleAspectFit
         cell.productImage.image = self.collectionViewCell.productImage.image
+        let store = self.selectedProductData.store
+        let storeText = store.name+"\n"+store.neighborName+"  "+store.shoppingName+"\n"+store.address+"\nTelefone: "+store.telephone1+"   "+store.telephone2
+        cell.storeDetails.text = storeText
+        cell.selectionStyle = UITableViewCellSelectionStyle.None
+        
         return cell
     }
     
+    func cellShareButtonTapped(cell: ProductDetailTableViewCell) {
+
+        let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
+        shareToFacebook.setInitialText(cell.productDescription.text)
+        //TODO: Change to the correct Product URL here
+        shareToFacebook.addURL(NSURL(string: "http://www.brasiloutlet.com"))
+
+        if let image = cell.productImage.image {
+            shareToFacebook.addImage(image)
+        }
+        
+        self.presentViewController(shareToFacebook, animated: true, completion: nil)
+    }
+
+    func cellLikeButtonTapped(cell: ProductDetailTableViewCell) {
+//        let indexPath = myCollectionView.indexPathForCell(cell)!
+//        let productToLike = productModelList[indexPath.row] as! ProductModel
+        let productToLike = ProductModel()
+        let likeURL = "http://www.brasiloutlet.com/webservice/discount/like.php?discountid=\(productToLike.id)&type=PUT"
+        cell.request = Alamofire.request(.POST, likeURL).responseImage() {
+            [weak self] response in
+            if let likeResult = response.result.value {
+                print("SE LIKE OK: Trocar cor do botão!")
+            }
+        }
+    }
+
+    func cellPhoneButtonTapped(cell: ProductDetailTableViewCell) {
+        let phone = "tel://982374234";
+        let url:NSURL = NSURL(string:phone)!;
+        UIApplication.sharedApplication().openURL(url);
+    }
+    
+    func cellMailButtonTapped(cell: ProductDetailTableViewCell) {
+        let email = "foo@bar.com"
+        let url = NSURL(string: "mailto:\(email)")
+        UIApplication.sharedApplication().openURL(url!)
+    }
+
     
     /*
     // Override to support conditional editing of the table view.

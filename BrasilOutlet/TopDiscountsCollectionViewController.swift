@@ -11,12 +11,11 @@ import Alamofire
 import SwiftyJSON
 import Social
 
-class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCellDelegate, APIProtocol {
+class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDataSource, UICollectionViewDelegate, ProductsCollectionViewCellDelegate, APIProtocol {
     
     @IBOutlet var myCollectionView: UICollectionView!
     
     private var str : String?
-    var selectedCell = ProductsCollectionViewCell()
     
     var request: Alamofire.Request?
     var viewControllerDelegate : ViewControllerProtocol?
@@ -33,6 +32,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         
         for (index,subJson):(String, JSON) in result {
             let product = ProductModel()
+            
             product.activated = subJson["activated"].intValue
             product.description = subJson["description"].stringValue
             product.discountPercent = subJson["discountPercent"].intValue
@@ -42,7 +42,26 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             product.image = subJson["image"].stringValue
             product.startDate = subJson["startDate"].stringValue
             product.title = subJson["title"].stringValue
-            print("URL da imagem: \(product.image)")
+
+            product.store.id = subJson["store"]["id"].intValue
+            product.store.name = subJson["store"]["name"].stringValue
+            product.store.socialName = subJson["store"]["socialName"].stringValue
+            product.store.cnpj = subJson["store"]["cnpj"].stringValue
+            product.store.address = subJson["store"]["address"].stringValue
+            product.store.latCoordinate = subJson["store"]["latCoordinate"].stringValue
+            product.store.longCoordinate = subJson["store"]["longCoordinate"].stringValue
+            product.store.cityId = subJson["store"]["cityId"].intValue
+            product.store.favorite = subJson["store"]["favorite"].stringValue
+            product.store.neighborName = subJson["store"]["neighborName"].stringValue
+            product.store.neighborId = subJson["store"]["neighborId"].intValue
+            product.store.shoppingId = subJson["store"]["shoppingId"].intValue
+            product.store.shoppingName = subJson["store"]["shoppingName"].stringValue
+            product.store.telephone1 = subJson["store"]["telephone1"].stringValue
+            product.store.telephone2 = subJson["store"]["telephone2"].stringValue
+            product.store.subscriptionDiscountsLimit = subJson["store"]["subscriptionDiscountsLimit"].stringValue
+            product.store.subscriptionExpirationDate = subJson["store"]["subscriptionExpirationDate"].stringValue
+            product.store.subscriptionPlan = subJson["store"]["subscriptionPlan"].stringValue
+            
             products.addObject(product)
             print("\(products.description) e indice: \(index)")
         }
@@ -120,16 +139,16 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         return cell
     }
     
-    func cellButtonTapped(cell: ProductsCollectionViewCell) {
+    func cellShareButtonTapped(cell: ProductsCollectionViewCell) {
         let indexPath = myCollectionView.indexPathForCell(cell)!
-        let product = productModelList[indexPath.row] as! ProductModel
+        let productToShare = productModelList[indexPath.row] as! ProductModel
         let shareToFacebook : SLComposeViewController = SLComposeViewController(forServiceType: SLServiceTypeFacebook)
-        let productURL = NSURL(string: product.image)
-        shareToFacebook.setInitialText(product.description)
+        let productURL = NSURL(string: productToShare.image)
+        shareToFacebook.setInitialText(productToShare.description)
         shareToFacebook.addURL(productURL)
 
         //loading images from URLs Asyncronously
-        let imageURL = (product.image)
+        let imageURL = (productToShare.image)
         self.request?.cancel()
         self.request = Alamofire.request(.GET, imageURL).responseImage() {
             [weak self] response in
@@ -141,12 +160,20 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         self.presentViewController(shareToFacebook, animated: true, completion: nil)
     }
 
-//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-//        print("didSelectItem at index path")
-//        super.viewDidAppear(true)
-//        self.performSegueWithIdentifier("productDetailView", sender: indexPath)
-//        self.selectedCell = collectionView.cellForItemAtIndexPath(indexPath) as! ProductsCollectionViewCell
-//    }
+    func cellLikeButtonTapped(cell: ProductsCollectionViewCell) {
+        let indexPath = myCollectionView.indexPathForCell(cell)!
+        let productToLike = productModelList[indexPath.row] as! ProductModel
+        let likeURL = "http://www.brasiloutlet.com/webservice/discount/like.php?discountid=\(productToLike.id)&type=PUT"
+        print("LIKE button before request")
+        cell.request = Alamofire.request(.POST, likeURL).responseImage() {
+            [weak self] response in
+            if let likeResult = response.result.value {
+                //TODO: Change the button color if the response is OK
+                print("If Like response = OK, then CHANGE the button color!")
+            }
+        }
+    }
+    
     
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
@@ -154,9 +181,13 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         print("entrou prepare for segue")
         var indexPaths = self.myCollectionView.indexPathsForSelectedItems()
         if(segue.identifier == "productDetailView"){
-                let vc = segue.destinationViewController as! ProductDetailTableViewController
-                vc.collectionViewCell = myCollectionView.cellForItemAtIndexPath(indexPaths![0]) as! ProductsCollectionViewCell
-                print("Segue identifier eh productDetailView")
+            let vc = segue.destinationViewController as! ProductDetailTableViewController
+            let selectedCell = myCollectionView.cellForItemAtIndexPath(indexPaths![0]) as! ProductsCollectionViewCell
+            vc.collectionViewCell = selectedCell
+            let indexPath = myCollectionView.indexPathForCell(selectedCell)!
+            let selectedProduct = productModelList[indexPath.row] as! ProductModel
+            vc.selectedProductData = selectedProduct
+            print("Segue identifier eh productDetailView")
         }
     }
 }

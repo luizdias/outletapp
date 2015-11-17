@@ -27,8 +27,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
     }
     
-    
-
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         
@@ -61,7 +59,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingVC.allowSkipping = true
         
         self.window?.backgroundColor = UIColor.whiteColor()
-        if defaults.boolForKey("shouldShowOnboarding") == true || defaults.stringForKey("shouldShowOnboarding") == nil {
+        if defaults.boolForKey("shouldShowOnboardingScreen") == true || defaults.stringForKey("shouldShowOnboardingScreen") == nil {
             self.window?.rootViewController = onboardingVC
         }
         
