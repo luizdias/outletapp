@@ -110,13 +110,15 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell:UITableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath)
+        let cell:StoreTableViewCell = tableView.dequeueReusableCellWithIdentifier("cell", forIndexPath: indexPath) as! StoreTableViewCell
         
         if storeModelList.count != 0 {
             let storeArray = storeModelList[indexPath.row] as! StoreModel
-            cell.textLabel!.text = storeArray.name
+            cell.nameLabel.text = storeArray.name
+            cell.detailsLabel.text = storeArray.shoppingName + "\n" + storeArray.address
         } else {
-            cell.textLabel!.text = tableData[0]
+            cell.nameLabel.text = tableData[0]
+            cell.detailsLabel.text = tableData[0]
         }
         return cell
     }

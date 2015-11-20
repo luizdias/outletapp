@@ -133,6 +133,11 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
                     print("response de uma imagem")
                 }
             }
+            
+            cell.productLikeButton.tag = indexPath.item
+//            cell.productLikeButton.addTarget(self, action: "like:", forControlEvents: UIControlEvents.TouchUpInside)
+
+            
         } else {
             print("retornou célula padrão.")
         }
@@ -163,13 +168,35 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     func cellLikeButtonTapped(cell: ProductsCollectionViewCell) {
         let indexPath = myCollectionView.indexPathForCell(cell)!
         let productToLike = productModelList[indexPath.row] as! ProductModel
+        let responseGeneric = ResponseModel()
         let likeURL = "http://www.brasiloutlet.com/webservice/discount/like.php?discountid=\(productToLike.id)&type=PUT"
-        print("LIKE button before request")
-        cell.request = Alamofire.request(.POST, likeURL).responseImage() {
-            [weak self] response in
-            if let likeResult = response.result.value {
-                //TODO: Change the button color if the response is OK
-                print("If Like response = OK, then CHANGE the button color!")
+        let parameters = ["discountid" : productToLike.id, "type": "PUT"]
+        
+        print("LIKE button before request - product to like: \(productToLike.id)")
+        print(likeURL)
+
+        cell.request = Alamofire.request(.POST, likeURL, parameters: parameters as! [String : AnyObject]).responseJSON { response in
+            switch response.result {
+            case .Success:
+                let json = JSON(response.result.value!)
+                responseGeneric.obj = json["obj"].stringValue
+                responseGeneric.sucess = json["sucess"].boolValue
+                responseGeneric.msg = json["msg"].stringValue
+                NSLog("POST do LIKE Result: \(json)")
+                
+                if (responseGeneric.sucess){
+                    cell.productLikeButton.tintColor = UIColor.blueColor()
+                    let likeImage = cell.productLikeButton.imageForState(UIControlState.Normal)
+                    let likeBlueImage = likeImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                    cell.productLikeButton.setImage(likeBlueImage, forState: UIControlState.Normal)
+                    cell.tintColor = UIColor.blueColor()
+                    
+                } else {
+                    print("LIKE: deu errado")
+                }
+                
+            case .Failure(let error):
+                print("POST Error \(error)")
             }
         }
     }

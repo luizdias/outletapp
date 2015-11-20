@@ -99,7 +99,7 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCellWithReuseIdentifier("cell", forIndexPath: indexPath) as! ProductsCollectionViewCell
 
-//        cell.delegate = self
+        cell.delegate = self
         if productModelList.count != 0{
             let productArray = productModelList[indexPath.row] as! ProductModel
             cell.productActualPrice.text = productArray.discountPrice
