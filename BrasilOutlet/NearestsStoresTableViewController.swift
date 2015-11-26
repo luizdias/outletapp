@@ -57,6 +57,11 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         })
     }
     
+    func didErrorHappened(error: NSError) {
+        let alert = UIAlertController(title: "Alert", message: error.description, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -69,6 +74,7 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         // to test localhost change the path to this bellow:
         //        MyAPI.get("/db")
         
+        //TODO: Implement control that uses the actual CITY when user DENIES the authorization
         locManager.requestWhenInUseAuthorization()
         
         var currentLocation = CLLocation()
@@ -82,13 +88,25 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         print("Localization longitude: \(currentLocation.coordinate.longitude)")
         print("Localization latitude: \(currentLocation.coordinate.latitude)")
         
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        
         self.showHUD()
         MyAPI.post("/webservice/store/nearests.php", parameters: [
-               "idcity" : "7",
+               "idcity" : actualCity,
             "latitude"  : "\(currentLocation.coordinate.latitude)".stringByReplacingOccurrencesOfString("-", withString: ""),
             "longitude" : "\(currentLocation.coordinate.longitude)".stringByReplacingOccurrencesOfString("-", withString: "")
             ], delegate: self)
     }
+    
+    func loadList(notification: NSNotification){
+        
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        self.showHUD()
+        MyAPI.post("/webservice/category/discountcategorylist.php", parameters: [ "idcity" : actualCity, "gender" : "1"  ], delegate: self)
+        
+        self.tableView.reloadData()
+    }
+
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -122,6 +140,19 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         }
         return cell
     }
+    
+    @IBAction func chooseCity(sender: UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("ChooseCityViewControllerID")
+        viewController.modalPresentationStyle = .Popover
+        viewController.preferredContentSize = CGSizeMake(320, 261)
+        let popoverPresentationViewController = viewController.popoverPresentationController
+        popoverPresentationViewController?.permittedArrowDirections = .Any
+        //        popoverPresentationViewController?.delegate = self
+        popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+
     
     /*
     // Override to support conditional editing of the table view.

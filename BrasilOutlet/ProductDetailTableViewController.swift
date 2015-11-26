@@ -96,16 +96,34 @@ class ProductDetailTableViewController: UITableViewController, ProductDetailTabl
     }
 
     func cellPhoneButtonTapped(cell: ProductDetailTableViewCell) {
+        
+        //TODO: Change Store phone number here
         let phone = "tel://982374234";
         let url:NSURL = NSURL(string:phone)!;
         UIApplication.sharedApplication().openURL(url);
     }
     
     func cellMailButtonTapped(cell: ProductDetailTableViewCell) {
+        
+        //TODO: Change Store e-mail address here
         let email = "foo@bar.com"
         let url = NSURL(string: "mailto:\(email)")
         UIApplication.sharedApplication().openURL(url!)
     }
+    
+    
+    @IBAction func chooseCity(sender: UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("ChooseCityViewControllerID")
+        viewController.modalPresentationStyle = .Popover
+        viewController.preferredContentSize = CGSizeMake(320, 261)
+        let popoverPresentationViewController = viewController.popoverPresentationController
+        popoverPresentationViewController?.permittedArrowDirections = .Any
+        //        popoverPresentationViewController?.delegate = self
+        popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+
 
     
     /*

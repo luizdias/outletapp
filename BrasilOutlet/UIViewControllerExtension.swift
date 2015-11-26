@@ -13,7 +13,7 @@ extension UIViewController {
     
     func showHUD(){
         let loading = MBProgressHUD.showHUDAddedTo((UIApplication.sharedApplication().delegate as! AppDelegate).window, animated: true)
-        loading.userInteractionEnabled = false
+        loading.userInteractionEnabled = true
     }
     
     func hideHUD() {
@@ -21,4 +21,11 @@ extension UIViewController {
             AppDelegate).window, animated: true)
     }
     
+}
+
+
+extension NSUserDefaults {
+    func setString(string:String, forKey:String) {
+        NSUserDefaults().setObject(string, forKey: forKey)
+    }
 }

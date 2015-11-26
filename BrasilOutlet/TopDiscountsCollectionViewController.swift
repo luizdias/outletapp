@@ -20,7 +20,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     var request: Alamofire.Request?
     var viewControllerDelegate : ViewControllerProtocol?
     var MyAPI = API()
-    var tableData = ["Um", "Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete", "Oito"]
+    var tableData = []
     var tableImages = ["sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg"]
     var productModelList: NSMutableArray = []
     
@@ -76,17 +76,34 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             self.myCollectionView.collectionViewLayout.invalidateLayout()
             self.myCollectionView.reloadData()
             self.myCollectionView.reloadSections(NSIndexSet.init(index: 0))
-            print("dispatch main queue here!")
-            
         })
     }
     
+    func didErrorHappened(error: NSError) {
+        let alert = UIAlertController(title: "Alert", message: error.description, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
         
         self.showHUD()
-        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
+        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : actualCity  ], delegate: self)
+        
+    }
+    
+    func loadList(notification: NSNotification){
+
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        self.showHUD()
+        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : actualCity  ], delegate: self)
+        
+        self.myCollectionView.reloadData()
     }
     
     override func didReceiveMemoryWarning() {
@@ -94,7 +111,11 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         // Dispose of any resources that can be recreated.
     }
     
-    override func viewWillAppear(animated: Bool) {}
+    override func viewWillAppear(animated: Bool) {
+//        self.myCollectionView.collectionViewLayout.invalidateLayout()
+//        self.myCollectionView.reloadData()
+        self.myCollectionView.reloadSections(NSIndexSet.init(index: 0))
+    }
     
     // MARK: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -103,9 +124,8 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         if productModelList.count != 0{
             return productModelList.count
         } else {
-            return tableData.count
+                return tableData.count
         }
-        
     }
     
     func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
@@ -217,4 +237,17 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             print("Segue identifier eh productDetailView")
         }
     }
+    
+    @IBAction func chooseCity(sender: UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("ChooseCityViewControllerID") 
+        viewController.modalPresentationStyle = .Popover
+        viewController.preferredContentSize = CGSizeMake(320, 261)
+        let popoverPresentationViewController = viewController.popoverPresentationController
+        popoverPresentationViewController?.permittedArrowDirections = .Any
+//        popoverPresentationViewController?.delegate = self
+        popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+    
 }

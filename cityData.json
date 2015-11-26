@@ -1,0 +1,137 @@
+ [
+      {
+      "id": "1",
+      "state": "AC",
+      "city": "Rio Branco"
+      },
+      {
+      "id": "2",
+      "state": "AL",
+      "city": "Maceió"
+      },
+      {
+      "id": "3",
+      "state": "AP",
+      "city": "Macapá"
+      },
+      {
+      "id": "4",
+      "state": "AM",
+      "city": "Manaus"
+      },
+      {
+      "id": "5",
+      "state": "BA",
+      "city": "Salvador"
+      },
+      {
+      "id": "6",
+      "state": "CE",
+      "city": "Fortaleza"
+      },
+      {
+      "id": "7",
+      "state": "DF",
+      "city": "Brasília"
+      },
+      {
+      "id": "8",
+      "state": "ES",
+      "city": "Vitória"
+      },
+      {
+      "id": "9",
+      "state": "GO",
+      "city": "Goiânia"
+      },
+      {
+      "id": "10",
+      "state": "MA",
+      "city": "São Luís"
+      },
+      {
+      "id": "11",
+      "state": "MT",
+      "city": "Cuiabá"
+      },
+      {
+      "id": "12",
+      "state": "MS",
+      "city": "Campo Grande"
+      },
+      {
+      "id": "13",
+      "state": "MG",
+      "city": "Belo Horizonte"
+      },
+      {
+      "id": "14",
+      "state": "PR",
+      "city": "Curitiba"
+      },
+      {
+      "id": "15",
+      "state": "PB",
+      "city": "João Pessoa"
+      },
+      {
+      "id": "16",
+      "state": "PA",
+      "city": "Belém"
+      },
+      {
+      "id": "17",
+      "state": "PE",
+      "city": "Recife"
+      },
+      {
+      "id": "18",
+      "state": "PI",
+      "city": "Teresina"
+      },
+      {
+      "id": "19",
+      "state": "RJ",
+      "city": "Rio de Janeiro"
+      },
+      {
+      "id": "20",
+      "state": "RN",
+      "city": "Natal"
+      },
+      {
+      "id": "21",
+      "state": "RS",
+      "city": "Porto Alegre"
+      },
+      {
+      "id": "22",
+      "state": "RO",
+      "city": "Porto Velho"
+      },
+      {
+      "id": "23",
+      "state": "RR",
+      "city": "Boa Vista"
+      },
+      {
+      "id": "24",
+      "state": "SC",
+      "city": "Florianópolis"
+      },
+      {
+      "id": "25",
+      "state": "SE",
+      "city": "Aracaju"
+      },
+      {
+      "id": "26",
+      "state": "SP",
+      "city": "São Paulo"
+      },
+      {
+      "id": "27",
+      "state": "TO",
+      "city": "Palmas"
+      }
+  ]

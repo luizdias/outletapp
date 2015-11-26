@@ -61,14 +61,24 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         
         })
     }
-
+    
+    func didErrorHappened(error: NSError) {
+        let alert = UIAlertController(title: "Alert", message: error.description, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
+        
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        
         self.showHUD()
+        
         MyAPI.post("/webservice/discount/discountlist.php", parameters: [
-            "idcity" : "7",
+            "idcity" : actualCity,
             "cat" : subCategory,
             "storeid" : 0,
             "page" : "0"
@@ -83,6 +93,21 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     override func viewWillAppear(animated: Bool) {
         super.viewDidAppear(true)
     }
+    
+    func loadList(notification: NSNotification){
+        
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        self.showHUD()
+        MyAPI.post("/webservice/discount/discountlist.php", parameters: [
+            "idcity" : actualCity,
+            "cat" : subCategory,
+            "storeid" : 0,
+            "page" : "0"
+            ], delegate: self)
+        
+        self.myCollectionView.reloadData()
+    }
+
 
     // MARK: UICollectionViewDataSource
     func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -161,5 +186,19 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
         print("selecionou uma celula!")
     }
+    
+    
+    @IBAction func chooseCity(sender: UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("ChooseCityViewControllerID")
+        viewController.modalPresentationStyle = .Popover
+        viewController.preferredContentSize = CGSizeMake(320, 261)
+        let popoverPresentationViewController = viewController.popoverPresentationController
+        popoverPresentationViewController?.permittedArrowDirections = .Any
+        //        popoverPresentationViewController?.delegate = self
+        popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+
     
 }

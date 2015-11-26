@@ -55,11 +55,18 @@ class DiscountsCollectionViewController: UICollectionViewController, APIProtocol
             
         })
     }
+    
+    func didErrorHappened(error: NSError) {
+        let alert = UIAlertController(title: "Alert", message: error.description, preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.presentViewController(alert, animated: true, completion: nil)
+    }
 
     override func loadView() {
         super.loadView()
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
         self.showHUD()
-        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : "7"  ], delegate: self)
+        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : actualCity  ], delegate: self)
     }
     
     override func viewWillAppear(animated: Bool) {

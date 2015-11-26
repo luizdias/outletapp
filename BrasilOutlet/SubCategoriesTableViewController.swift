@@ -53,6 +53,19 @@ class SubCategoriesTableViewController: UITableViewController {
         return cell
     }
     
+    @IBAction func chooseCity(sender: UIButton){
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let viewController = storyboard.instantiateViewControllerWithIdentifier("ChooseCityViewControllerID")
+        viewController.modalPresentationStyle = .Popover
+        viewController.preferredContentSize = CGSizeMake(320, 261)
+        let popoverPresentationViewController = viewController.popoverPresentationController
+        popoverPresentationViewController?.permittedArrowDirections = .Any
+        //        popoverPresentationViewController?.delegate = self
+        popoverPresentationController?.sourceRect = sender.frame
+        presentViewController(viewController, animated: true, completion: nil)
+    }
+
+    
     /*
     // Override to support conditional editing of the table view.
     override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {

@@ -150,7 +150,19 @@
                             <constraint firstItem="XtS-f4-VIX" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" id="fGJ-Lg-Pqo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Promoções do Dia" id="VeR-RQ-z3i"/>
+                    <navigationItem key="navigationItem" title="Promoções do Dia" id="VeR-RQ-z3i">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="dID-MJ-YRd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="jez-VG-qOl">
+                                <rect key="frame" x="331" y="-2" width="28" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="Geo"/>
+                                <connections>
+                                    <action selector="chooseCity:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ZLH-jX-KVZ"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myCollectionView" destination="XtS-f4-VIX" id="vdT-RC-SCe"/>
                     </connections>
@@ -210,7 +222,19 @@
                             <outlet property="delegate" destination="bcU-Lh-WO7" id="EJQ-Eo-LdI"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Lojas Próximas" id="Ts5-bX-baX"/>
+                    <navigationItem key="navigationItem" title="Lojas Próximas" id="Ts5-bX-baX">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="duT-rE-20V">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="G6b-hq-Lcm">
+                                <rect key="frame" x="331" y="-2" width="28" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="Geo"/>
+                                <connections>
+                                    <action selector="chooseCity:" destination="bcU-Lh-WO7" eventType="touchUpInside" id="NKZ-yI-fHy"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6n-QK-eyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -267,25 +291,25 @@
         <scene sceneID="auI-vX-wpn">
             <objects>
                 <tableViewController title="RootViewController" id="2x6-V4-fkQ" customClass="CategoriesTableViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="lEU-Xf-NYR">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" id="lEU-Xf-NYR">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="IiD-pl-74V" customClass="CategoriesTableViewCell" customModule="BrasilOutlet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="68" id="IiD-pl-74V" customClass="CategoriesTableViewCell" customModule="BrasilOutlet" customModuleProvider="target">
+                                <rect key="frame" x="0.0" y="92" width="375" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="IiD-pl-74V" id="ukq-sj-EK9">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="3yy-RK-m3Y">
-                                            <rect key="frame" x="8" y="4" width="41" height="35"/>
+                                            <rect key="frame" x="8" y="16" width="41" height="35"/>
                                             <animations/>
                                         </imageView>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ULM-ch-sel">
-                                            <rect key="frame" x="57" y="4" width="310" height="35"/>
+                                            <rect key="frame" x="57" y="16" width="310" height="35"/>
                                             <animations/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -309,7 +333,19 @@
                             <outlet property="delegate" destination="2x6-V4-fkQ" id="N2M-Ok-Pfu"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Categorias" id="BVW-ze-PGg"/>
+                    <navigationItem key="navigationItem" title="Categorias" id="BVW-ze-PGg">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="kAo-8x-4eZ">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="66K-yU-mUN">
+                                <rect key="frame" x="331" y="-2" width="28" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="Geo"/>
+                                <connections>
+                                    <action selector="chooseCity:" destination="2x6-V4-fkQ" eventType="touchUpInside" id="rz9-3d-HBs"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z4Q-x3-edQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -319,17 +355,17 @@
         <scene sceneID="5qR-Ih-vQH">
             <objects>
                 <tableViewController id="DnE-5T-Aya" customClass="SubCategoriesTableViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="d2G-sk-obI">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="68" sectionHeaderHeight="28" sectionFooterHeight="28" id="d2G-sk-obI">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="jPV-X9-c8d">
-                                <rect key="frame" x="0.0" y="92" width="375" height="44"/>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="68" id="jPV-X9-c8d">
+                                <rect key="frame" x="0.0" y="92" width="375" height="68"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jPV-X9-c8d" id="GpI-Fy-eKg">
-                                    <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="67"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <animations/>
                                 </tableViewCellContentView>
@@ -344,7 +380,19 @@
                             <outlet property="delegate" destination="DnE-5T-Aya" id="r26-rI-ugP"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Subcategorias" id="3wh-V8-jZY" userLabel="Subcategorias"/>
+                    <navigationItem key="navigationItem" title="Subcategorias" id="3wh-V8-jZY" userLabel="Subcategorias">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="ROv-mI-Awd">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="GcX-Y1-Wyw">
+                                <rect key="frame" x="331" y="-2" width="28" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="Geo"/>
+                                <connections>
+                                    <action selector="chooseCity:" destination="DnE-5T-Aya" eventType="touchUpInside" id="xcx-nU-J1j"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="M5T-9d-0Hw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -372,6 +420,89 @@
             </objects>
             <point key="canvasLocation" x="1239.5" y="1230.5"/>
         </scene>
+        <!--Choose City View Controller-->
+        <scene sceneID="Rqg-0u-cxB">
+            <objects>
+                <viewController storyboardIdentifier="ChooseCityViewControllerID" modalPresentationStyle="overCurrentContext" id="vUw-ay-rGy" customClass="ChooseCityViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="YZO-TM-VTq"/>
+                        <viewControllerLayoutGuide type="bottom" id="1Bb-6S-g4V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="z9F-Hi-bkJ">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="CitySkyline" translatesAutoresizingMaskIntoConstraints="NO" id="1EW-xE-avK">
+                                <rect key="frame" x="20" y="124" width="335" height="267"/>
+                                <animations/>
+                            </imageView>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Escolha a cidade onde você está:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-ni-XHu">
+                                <rect key="frame" x="20" y="64" width="335" height="52"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Escolha a cidade..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ia-vd-uHI">
+                                <rect key="frame" x="20" y="444" width="335" height="30"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-Sk-Qxw">
+                                <rect key="frame" x="20" y="517" width="335" height="48"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.24705882352941178" green="0.63921568627450975" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="Confirmar">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="confirmChosenCity:" destination="vUw-ay-rGy" eventType="touchUpInside" id="heZ-L6-Mk4"/>
+                                </connections>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-E5-9dR">
+                                <rect key="frame" x="140" y="415" width="215" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Cidade atual:" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNO-5g-2yL">
+                                <rect key="frame" x="20" y="415" width="112" height="21"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIq-Zv-qFm">
+                                <rect key="frame" x="20" y="580" width="335" height="48"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.87865522251563055" green="1" blue="0.91810494063917869" alpha="1" colorSpace="calibratedRGB"/>
+                                <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="18"/>
+                                <state key="normal" title="Cancelar">
+                                    <color key="titleColor" red="0.2470588235" green="0.63921568630000003" blue="0.24313725489999999" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="cancelChoice:" destination="vUw-ay-rGy" eventType="touchUpInside" id="Gm8-Jv-fhj"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                    <connections>
+                        <outlet property="actualCityLabel" destination="tNO-5g-2yL" id="tQ6-c0-4gh"/>
+                        <outlet property="actualCityText" destination="GkD-E5-9dR" id="0Vn-4m-Gx0"/>
+                        <outlet property="cancelButton" destination="DIq-Zv-qFm" id="boX-fx-Dri"/>
+                        <outlet property="cityPickerTextField" destination="4ia-vd-uHI" id="uPI-t4-i8K"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="tDj-RZ-Whi" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1029.5" y="386.5"/>
+        </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="D7n-uo-XLa">
             <objects>
@@ -391,7 +522,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0EN-ue-P7u" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="85.5" y="386.5"/>
+            <point key="canvasLocation" x="484.5" y="386.5"/>
         </scene>
         <!--Page View Controller-->
         <scene sceneID="x6Z-UZ-mqP">
@@ -630,7 +761,9 @@
                             <outlet property="delegate" destination="ggy-6i-0bp" id="xFl-ru-nrD"/>
                         </connections>
                     </tableView>
+                    <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detalhes" id="jjG-dp-CEZ"/>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad-1/2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXi-gB-mAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -782,7 +915,19 @@
                             <constraint firstItem="BgQ-n6-Z67" firstAttribute="top" secondItem="qq0-n8-sUo" secondAttribute="bottom" id="wTd-n0-ccc"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" title="Descontos" id="dNt-4g-ujJ"/>
+                    <navigationItem key="navigationItem" title="Descontos" id="dNt-4g-ujJ">
+                        <barButtonItem key="rightBarButtonItem" style="plain" id="9SO-6G-5SO">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" id="tbo-jy-QDK">
+                                <rect key="frame" x="331" y="-2" width="28" height="48"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <animations/>
+                                <state key="normal" image="Geo"/>
+                                <connections>
+                                    <action selector="chooseCity:" destination="hYV-WF-Kly" eventType="touchUpInside" id="Cju-47-RT9"/>
+                                </connections>
+                            </button>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="myCollectionView" destination="BgQ-n6-Z67" id="wh2-dE-95S"/>
                     </connections>
@@ -791,11 +936,32 @@
             </objects>
             <point key="canvasLocation" x="2948.5" y="1230.5"/>
         </scene>
+        <!--View Controller-->
+        <scene sceneID="0dV-Ce-BWT">
+            <objects>
+                <viewController id="MaO-Ku-e3E" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Sp5-Ne-09r"/>
+                        <viewControllerLayoutGuide type="bottom" id="pek-tK-HFu"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="LSG-Py-ycf">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Wf3-Jk-g3K" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-351" y="353"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Categories" width="25" height="25"/>
+        <image name="CitySkyline" width="166" height="125"/>
         <image name="DiscountOfTheDay" width="25" height="25"/>
         <image name="Email" width="25" height="25"/>
+        <image name="Geo" width="25" height="25"/>
         <image name="Heart" width="48" height="48"/>
         <image name="Like" width="48" height="48"/>
         <image name="NearStores" width="25" height="25"/>

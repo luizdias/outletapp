@@ -28,10 +28,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-        // Override point for customization after application launch.
-        
+
         let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject("7", forKey: "userCityKey")
         
         let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bgOnboarding.png"), contents: [firstPage, secondPage, thirdPage])
         //        onboardingVC.fontName = "Helvetica-Light";
@@ -73,10 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.makeKeyAndVisible()
         })
         
-        if let userCity = defaults.stringForKey("userCityKey")
-        {
-            print("Cidade do usuário: \(userCity)")
-        }
         return true
     }
 

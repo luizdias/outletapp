@@ -13,7 +13,7 @@ import SwiftyJSON
 class API {
     
     let hostname = "http://www.brasiloutlet.com"
-   let hostdummy = "http://localhost:3000"
+    let hostdummy = "http://localhost:3000"
     
     let defaultManager: Alamofire.Manager = {
         let serverTrustPolicies: [String: ServerTrustPolicy] = [
@@ -22,6 +22,7 @@ class API {
         
         let configuration = NSURLSessionConfiguration.defaultSessionConfiguration()
         configuration.HTTPAdditionalHeaders = Alamofire.Manager.defaultHTTPHeaders
+        configuration.timeoutIntervalForResource = 20 //seconds
         
         return Alamofire.Manager(
             configuration: configuration,
@@ -72,6 +73,9 @@ class API {
                     }
                 case .Failure(let error):
                     print("POST Error \(error)")
+                    if (delegate != nil){
+                        delegate!.didErrorHappened(error)
+                    }
                 }
                 
         }
