@@ -55,6 +55,7 @@ class ChooseCityViewController: UIViewController, UIPickerViewDataSource, UIPick
         super.viewDidLoad()
         citiesArray = loadCitiesData()
         cancelButton.hidden = true
+        cityPickerTextField.borderStyle = UITextBorderStyle.RoundedRect
         let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
         
         if  actualCity != "" && actualCity != "0" {
@@ -88,6 +89,8 @@ class ChooseCityViewController: UIViewController, UIPickerViewDataSource, UIPick
         return "\(citiesArray[row].city) - \(citiesArray[row].state)"
     }
     
+    //TODO: Change the PickerView control do OK or DONE button
+    // More details here: http://stackoverflow.com/questions/28720606/add-buttons-to-uipickerview-swift-1-2
     func pickerView(pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         cityPickerTextField.text = citiesArray[row].city
         cityToSave = row

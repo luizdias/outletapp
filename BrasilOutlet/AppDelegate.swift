@@ -15,23 +15,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
 
-    let firstPage = OnboardingContentViewController(title: "Bem vindo ao BrasilOutlet", body: "Aqui você encontra milhares de descontos em um só lugar.", image: UIImage(named: "littleDudeSerious.png"), buttonText: "Text For Button") { () -> Void in
-        // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-    }
-    
-    let secondPage = OnboardingContentViewController(title: "Título 2", body: "Mensagem 2 entra aqui.", image: UIImage(named: "littleDudeSerious.png"), buttonText: "Botão") { () -> Void in
-        // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-    }
-    
-    let thirdPage = OnboardingContentViewController(title: "Terceira tela de tutorial", body: "Aqui entra a mensagem here.", image: UIImage(named: "littleDude.png"), buttonText: "Text For Button") { () -> Void in
-        // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
-    }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         let defaults = NSUserDefaults.standardUserDefaults()
         
-        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bgOnboarding.png"), contents: [firstPage, secondPage, thirdPage])
+        let firstPage = OnboardingContentViewController(title: "Bem vindo!", body: "Quer comprar alguma coisa mas não sabe onde?", image: UIImage(named: "TutorialFirst"), buttonText: "Text For Button") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+        }
+        
+        let secondPage = OnboardingContentViewController(title: "Na Brasil Outlet:", body: "Você encontra as promoções mais baratas, mais perto de você e DE GRAÇA!", image: UIImage(named: "TutorialSecond"), buttonText: "Botão") { () -> Void in
+            // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
+        }
+        let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bgOnboarding.png"), contents: [firstPage, secondPage])
         //        onboardingVC.fontName = "Helvetica-Light";
         onboardingVC.pageControl.currentPageIndicatorTintColor = UIColor.grayColor()
         onboardingVC.pageControl.pageIndicatorTintColor = UIColor.lightGrayColor()
@@ -42,18 +38,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingVC.titleTextColor = UIColor.blackColor()
         onboardingVC.bodyFontSize = 22
         onboardingVC.bodyTextColor = UIColor.blackColor()
-        onboardingVC.iconWidth = CGFloat(100.0)
-        onboardingVC.iconHeight = CGFloat(200.0)
+        onboardingVC.iconWidth = CGFloat(266.0)
+        onboardingVC.iconHeight = CGFloat(276.0)
         onboardingVC.topPadding = 100
         onboardingVC.underIconPadding = 20
         onboardingVC.underTitlePadding = 15
-//        onboardingVC.bottomPadding = 20
-        onboardingVC.skipButton.setTitle("Pular", forState: UIControlState.Normal)
+        onboardingVC.skipButton.setTitle("Começar!", forState: UIControlState.Normal)
         onboardingVC.skipButton.setTitleColor(UIColor.grayColor(), forState: UIControlState.Normal)
-        onboardingVC.skipButton.backgroundColor = UIColor.clearColor()
+//        onboardingVC.skipButton.backgroundColor = UIColor(red: 63.0, green: 163.0, blue: 62.0, alpha: 1.0)
+        onboardingVC.skipButton.backgroundColor = UIColor.whiteColor()
         onboardingVC.skipButton.layer.cornerRadius = 5
         onboardingVC.skipButton.layer.borderWidth = 1
         onboardingVC.skipButton.layer.borderColor = UIColor.clearColor().CGColor
+//        onboardingVC.bottomPadding = 60
         onboardingVC.allowSkipping = true
         
         self.window?.backgroundColor = UIColor.whiteColor()
@@ -70,6 +67,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             self.window?.rootViewController = initialViewController
             self.window?.makeKeyAndVisible()
         })
+        
+
         
         return true
     }
@@ -161,5 +160,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         }
     }
 
+    class func resizeImage(image: UIImage, newHeight: CGFloat) -> UIImage {
+        
+        let scale = newHeight / image.size.height
+        let newWidth = image.size.width * scale
+        UIGraphicsBeginImageContext(CGSizeMake(newWidth, newHeight))
+        image.drawInRect(CGRectMake(0, 0, newWidth, newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return newImage
+    }
 }
 

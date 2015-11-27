@@ -80,20 +80,36 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     }
     
     func didErrorHappened(error: NSError) {
-        let alert = UIAlertController(title: "Alert", message: error.description, preferredStyle: UIAlertControllerStyle.Alert)
-        alert.addAction(UIAlertAction(title: "Click", style: UIAlertActionStyle.Default, handler: nil))
+        self.hideHUD()
+        let message = error.userInfo
+        print("\(message.description)")
+        let alert = UIAlertController(title: "Erro", message: "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011).", preferredStyle: UIAlertControllerStyle.Alert)
+        alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
         
-        self.showHUD()
-        MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : actualCity  ], delegate: self)
+        let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
+        
+        if actualCity != "" {
+            self.showHUD()
+            MyAPI.post("/webservice/discount/topdiscounts.php", parameters: [ "idcity" : actualCity  ], delegate: self)
+        } else{
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let viewController = storyboard.instantiateViewControllerWithIdentifier("ChooseCityViewControllerID")
+            viewController.modalPresentationStyle = .Popover
+            viewController.preferredContentSize = CGSizeMake(320, 261)
+            let popoverPresentationViewController = viewController.popoverPresentationController
+            popoverPresentationViewController?.permittedArrowDirections = .Any
+//            popoverPresentationViewController?.delegate = self
+//            popoverPresentationController?.sourceRect = sender.frame
+            presentViewController(viewController, animated: true, completion: nil)
+        }
+        
         
     }
     

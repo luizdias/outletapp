@@ -13,6 +13,12 @@
 		95206BB61C03D9F60073B06A /* cityData.json in Resources */ = {isa = PBXBuildFile; fileRef = 95206BB51C03D9F60073B06A /* cityData.json */; };
 		9524BD2F1BEB408E00225624 /* SubCategoriesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9524BD2E1BEB408D00225624 /* SubCategoriesTableViewController.swift */; };
 		95468F2C1BFA9B99000C1D11 /* ProductsCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95468F2B1BFA9B99000C1D11 /* ProductsCollectionViewController.swift */; };
+		9547E5A31C07C92F0017976A /* tutorialFirst.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547E59D1C07C92F0017976A /* tutorialFirst.png */; };
+		9547E5A41C07C92F0017976A /* tutorialFirst@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547E59E1C07C92F0017976A /* tutorialFirst@2x.png */; };
+		9547E5A51C07C92F0017976A /* tutorialFirst@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547E59F1C07C92F0017976A /* tutorialFirst@3x.png */; };
+		9547E5AE1C07E4C70017976A /* tutorialSecond.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547E5AB1C07E4C70017976A /* tutorialSecond.png */; };
+		9547E5AF1C07E4C70017976A /* tutorialSecond@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547E5AC1C07E4C70017976A /* tutorialSecond@2x.png */; };
+		9547E5B01C07E4C70017976A /* tutorialSecond@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 9547E5AD1C07E4C70017976A /* tutorialSecond@3x.png */; };
 		954F2F0D1BF0356C0062275A /* NearestsStoresTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F2F0C1BF0356C0062275A /* NearestsStoresTableViewController.swift */; };
 		954F2F111BF036B60062275A /* StoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 954F2F101BF036B60062275A /* StoreModel.swift */; };
 		9554E19D1BE0173600AC2563 /* ViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */; };
@@ -75,6 +81,12 @@
 		95206BB51C03D9F60073B06A /* cityData.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = cityData.json; path = ../cityData.json; sourceTree = "<group>"; };
 		9524BD2E1BEB408D00225624 /* SubCategoriesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SubCategoriesTableViewController.swift; sourceTree = "<group>"; };
 		95468F2B1BFA9B99000C1D11 /* ProductsCollectionViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductsCollectionViewController.swift; sourceTree = "<group>"; };
+		9547E59D1C07C92F0017976A /* tutorialFirst.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialFirst.png; sourceTree = "<group>"; };
+		9547E59E1C07C92F0017976A /* tutorialFirst@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialFirst@2x.png"; sourceTree = "<group>"; };
+		9547E59F1C07C92F0017976A /* tutorialFirst@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialFirst@3x.png"; sourceTree = "<group>"; };
+		9547E5AB1C07E4C70017976A /* tutorialSecond.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = tutorialSecond.png; sourceTree = "<group>"; };
+		9547E5AC1C07E4C70017976A /* tutorialSecond@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialSecond@2x.png"; sourceTree = "<group>"; };
+		9547E5AD1C07E4C70017976A /* tutorialSecond@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tutorialSecond@3x.png"; sourceTree = "<group>"; };
 		954F2F0C1BF0356C0062275A /* NearestsStoresTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NearestsStoresTableViewController.swift; sourceTree = "<group>"; };
 		954F2F101BF036B60062275A /* StoreModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreModel.swift; sourceTree = "<group>"; };
 		9554E19C1BE0173600AC2563 /* ViewControllerProtocol.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewControllerProtocol.swift; sourceTree = "<group>"; };
@@ -182,6 +194,19 @@
 			name = Model;
 			sourceTree = "<group>";
 		};
+		9547E59C1C07C90B0017976A /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				9547E5AB1C07E4C70017976A /* tutorialSecond.png */,
+				9547E5AC1C07E4C70017976A /* tutorialSecond@2x.png */,
+				9547E5AD1C07E4C70017976A /* tutorialSecond@3x.png */,
+				9547E59D1C07C92F0017976A /* tutorialFirst.png */,
+				9547E59E1C07C92F0017976A /* tutorialFirst@2x.png */,
+				9547E59F1C07C92F0017976A /* tutorialFirst@3x.png */,
+			);
+			name = Images;
+			sourceTree = "<group>";
+		};
 		95C15FA41BD9C1B600BD329A = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +232,7 @@
 		95C15FAF1BD9C1B700BD329A /* BrasilOutlet */ = {
 			isa = PBXGroup;
 			children = (
+				9547E59C1C07C90B0017976A /* Images */,
 				95206BB31C03D5820073B06A /* Model */,
 				95206BB21C03D5780073B06A /* Resources */,
 				95C15FB01BD9C1B700BD329A /* AppDelegate.swift */,
@@ -374,14 +400,20 @@
 			files = (
 				95611DFD1BEC591C00EAF8ED /* littleDude.png in Resources */,
 				95C15FBE1BD9C1B700BD329A /* LaunchScreen.storyboard in Resources */,
+				9547E5AF1C07E4C70017976A /* tutorialSecond@2x.png in Resources */,
 				95A48C771BDEF76100BA1486 /* ic_share.png in Resources */,
 				95A48C7B1BDEF77500BA1486 /* ic_like.png in Resources */,
 				95611DFF1BEC646B00EAF8ED /* littleDudeSerious.png in Resources */,
+				9547E5AE1C07E4C70017976A /* tutorialSecond.png in Resources */,
 				95A48C7D1BDEFB2B00BA1486 /* sample-product.jpg in Resources */,
 				95A48C791BDEF76B00BA1486 /* ic_heart.png in Resources */,
 				95206BB61C03D9F60073B06A /* cityData.json in Resources */,
+				9547E5A51C07C92F0017976A /* tutorialFirst@3x.png in Resources */,
+				9547E5A31C07C92F0017976A /* tutorialFirst.png in Resources */,
 				95C15FBB1BD9C1B700BD329A /* Assets.xcassets in Resources */,
 				95C15FB61BD9C1B700BD329A /* Main.storyboard in Resources */,
+				9547E5B01C07E4C70017976A /* tutorialSecond@3x.png in Resources */,
+				9547E5A41C07C92F0017976A /* tutorialFirst@2x.png in Resources */,
 				95611DFB1BEC590E00EAF8ED /* bgOnboarding.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
