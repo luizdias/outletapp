@@ -67,6 +67,7 @@ class ProductDetailTableViewCell: UITableViewCell {
         super.awakeFromNib()
         // The Favorite/Heart button is hidden while the User Login is not implemented.
         self.productHeartButton.hidden = true
+        self.productLikeButton.hidden = true
 
     }
 

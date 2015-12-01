@@ -33,6 +33,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         for (index,subJson):(String, JSON) in result {
             let product = ProductModel()
             
+            //TODO: Should we hide the product if ACTIVATED=TRUE?
             product.activated = subJson["activated"].intValue
             product.description = subJson["description"].stringValue
             product.discountPercent = subJson["discountPercent"].intValue
@@ -211,7 +212,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         print("LIKE button before request - product to like: \(productToLike.id)")
         print(likeURL)
 
-        cell.request = Alamofire.request(.POST, likeURL, parameters: parameters as! [String : AnyObject]).responseJSON { response in
+        cell.request = Alamofire.request(.POST, likeURL, parameters: parameters as? [String : AnyObject]).responseJSON { response in
             switch response.result {
             case .Success:
                 let json = JSON(response.result.value!)
@@ -236,8 +237,6 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             }
         }
     }
-    
-    
     
     // In a storyboard-based application, you will often want to do a little preparation before navigation
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {

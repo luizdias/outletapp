@@ -214,6 +214,7 @@
                                     <outlet property="detailsLabel" destination="V2O-hI-QVf" id="5Sf-gX-sSA"/>
                                     <outlet property="nameLabel" destination="3Cg-cu-QXQ" id="S7p-tg-ypN"/>
                                     <outlet property="storeImage" destination="P7D-5s-fSJ" id="YdG-iH-mJX"/>
+                                    <segue destination="hYV-WF-Kly" kind="show" identifier="productsView" id="etl-2O-kgh"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -238,7 +239,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e6n-QK-eyq" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1786.5" y="-432.5"/>
+            <point key="canvasLocation" x="1819.5" y="2027.5"/>
         </scene>
         <!--Lojas Próximas-->
         <scene sceneID="R1v-Of-gPx">
@@ -260,7 +261,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4ag-6r-MAH" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1239.5" y="-432.5"/>
+            <point key="canvasLocation" x="1239.5" y="2027.5"/>
         </scene>
         <!--Promocoes Nav-->
         <scene sceneID="hMw-C9-9Xf">
@@ -440,7 +441,7 @@
                                 <rect key="frame" x="20" y="64" width="335" height="52"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="16"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Escolha a cidade..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ia-vd-uHI">
@@ -465,7 +466,7 @@
                                 <rect key="frame" x="20" y="432" width="112" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIq-Zv-qFm">
@@ -484,7 +485,7 @@
                                 <rect key="frame" x="140" y="432" width="215" height="21"/>
                                 <animations/>
                                 <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="17"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
                         </subviews>
@@ -593,17 +594,17 @@
             <objects>
                 <tableViewController id="ggy-6i-0bp" customClass="ProductDetailTableViewController" customModule="BrasilOutlet" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="690" sectionHeaderHeight="28" sectionFooterHeight="28" id="umm-5p-8EE">
-                        <rect key="frame" x="0.0" y="0.0" width="507" height="768"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <color key="sectionIndexBackgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" rowHeight="690" id="68J-FM-8eW" customClass="ProductDetailTableViewCell" customModule="BrasilOutlet" customModuleProvider="target">
-                                <rect key="frame" x="0.0" y="92" width="507" height="690"/>
+                                <rect key="frame" x="0.0" y="92" width="375" height="690"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="68J-FM-8eW" id="d3a-kj-z1q">
-                                    <rect key="frame" x="0.0" y="0.0" width="507" height="689"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="689"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="i4M-nC-tBf">
@@ -764,11 +765,10 @@
                     <toolbarItems/>
                     <navigationItem key="navigationItem" title="Detalhes" id="jjG-dp-CEZ"/>
                     <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="iPad-1/2"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oXi-gB-mAw" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2366.5" y="386"/>
+            <point key="canvasLocation" x="2860.5" y="386.5"/>
         </scene>
         <!--Descontos-->
         <scene sceneID="s5h-hj-v4l">
@@ -897,6 +897,7 @@
                                             <outlet property="productLikeButton" destination="ZRJ-5K-mcI" id="b5F-dF-bAW"/>
                                             <outlet property="productOriginalPrice" destination="kRt-GB-9fK" id="33b-cz-0wg"/>
                                             <outlet property="productShareButton" destination="PDM-MN-Vqo" id="nc2-H2-gOQ"/>
+                                            <segue destination="ggy-6i-0bp" kind="show" identifier="productDetailView" id="eko-3Z-QNn"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -934,7 +935,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="K10-vL-L2T" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2948.5" y="1230.5"/>
+            <point key="canvasLocation" x="2860.5" y="1230.5"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="0dV-Ce-BWT">
@@ -970,5 +971,9 @@
         <image name="Share" width="48" height="48"/>
         <image name="StoreDefaultLogo" width="92" height="93"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="etl-2O-kgh"/>
+        <segue reference="eko-3Z-QNn"/>
+    </inferredMetricsTieBreakers>
     <color key="tintColor" red="0.79027408361434937" green="0.94940847158432007" blue="0.79320704936981201" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
 </document>

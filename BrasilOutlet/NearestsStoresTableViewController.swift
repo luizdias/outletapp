@@ -197,10 +197,13 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         // Get the new view controller using segue.destinationViewController.
         // Pass the selected object to the new view controller.
         
-//        if(segue.identifier == "subCategoriesView"){
-//            let vc = segue.destinationViewController as! SubCategoriesTableViewController
-//            vc.subCategoryModelList = self.subCategoryModelList
-//        }
+        if(segue.identifier == "productsView"){
+            let vc = segue.destinationViewController as! ProductsCollectionViewController
+            let indexPath = self.tableView.indexPathForSelectedRow
+            let selectedStore = storeModelList[indexPath!.row] as! StoreModel
+            print("Na tela nearest stores storeid\(selectedStore.id)")
+            vc.storeId = selectedStore.id
+        }
         
     }
     

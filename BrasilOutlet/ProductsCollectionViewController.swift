@@ -16,10 +16,11 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     @IBOutlet var myCollectionView: UICollectionView!
     
     var subCategory:String = ""
+    var storeId = 0
     var request: Alamofire.Request?
     var viewControllerDelegate : ViewControllerProtocol?
     var MyAPI = API()
-    var tableData = ["Um", "Dois", "Tres", "Quatro", "Cinco", "Seis", "Sete", "Oito"]
+    var tableData = []
     var tableImages = ["sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg","sample-product.jpg"]
     var productModelList: NSMutableArray = []
     
@@ -33,6 +34,8 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         
         for (index,subJson):(String, JSON) in result {
             let product = ProductModel()
+            
+            //TODO: Should we hide the product if ACTIVATED=TRUE?
             product.activated = subJson["activated"].intValue
             product.description = subJson["description"].stringValue
             product.discountPercent = subJson["discountPercent"].intValue
@@ -77,11 +80,11 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
         
         self.showHUD()
-        
+        print("Chamando api request com storeid: \(storeId)")
         MyAPI.post("/webservice/discount/discountlist.php", parameters: [
             "idcity" : actualCity,
             "cat" : subCategory,
-            "storeid" : 0,
+            "storeid" : storeId,
             "page" : "0"
             ], delegate: self)
     }
@@ -99,10 +102,11 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         
         let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
         self.showHUD()
+        print("Chamando api request com storeid: \(storeId)")
         MyAPI.post("/webservice/discount/discountlist.php", parameters: [
             "idcity" : actualCity,
             "cat" : subCategory,
-            "storeid" : 0,
+            "storeid" : storeId,
             "page" : "0"
             ], delegate: self)
         
@@ -128,9 +132,9 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
         cell.delegate = self
         if productModelList.count != 0{
             let productArray = productModelList[indexPath.row] as! ProductModel
-            cell.productActualPrice.text = productArray.discountPrice
+            cell.productActualPrice.text = "R$\(productArray.discountPrice)"
             cell.productDescription.text = productArray.description
-            cell.productOriginalPrice.text = productArray.fullPrice
+            cell.productOriginalPrice.text = "R$\(productArray.fullPrice)"
             cell.productDiscountValue.titleLabel?.text = "\(productArray.discountPercent)%"
             cell.productDiscountDates.text = ("Promoção válida de: \n" + "\(productArray.startDate) até \(productArray.endDate)")
             
@@ -174,19 +178,61 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
     func cellLikeButtonTapped(cell: ProductsCollectionViewCell) {
         let indexPath = myCollectionView.indexPathForCell(cell)!
         let productToLike = productModelList[indexPath.row] as! ProductModel
+        let responseGeneric = ResponseModel()
         let likeURL = "http://www.brasiloutlet.com/webservice/discount/like.php?discountid=\(productToLike.id)&type=PUT"
-        cell.request = Alamofire.request(.POST, likeURL).responseImage() {
-            [weak self] response in
-            if let likeResult = response.result.value {
-                print("SE LIKE OK: Trocar cor do botão!")
+        let parameters = ["discountid" : productToLike.id, "type": "PUT"]
+        
+        print("LIKE button before request - product to like: \(productToLike.id)")
+        print(likeURL)
+        
+        cell.request = Alamofire.request(.POST, likeURL, parameters: parameters as! [String : AnyObject]).responseJSON { response in
+            switch response.result {
+            case .Success:
+                let json = JSON(response.result.value!)
+                responseGeneric.obj = json["obj"].stringValue
+                responseGeneric.sucess = json["sucess"].boolValue
+                responseGeneric.msg = json["msg"].stringValue
+                NSLog("POST do LIKE Result: \(json)")
+                
+                if (responseGeneric.sucess){
+                    cell.productLikeButton.tintColor = UIColor.blueColor()
+                    let likeImage = cell.productLikeButton.imageForState(UIControlState.Normal)
+                    let likeBlueImage = likeImage!.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+                    cell.productLikeButton.setImage(likeBlueImage, forState: UIControlState.Normal)
+                    cell.tintColor = UIColor.blueColor()
+                    
+                } else {
+                    print("LIKE: deu errado")
+                }
+                
+            case .Failure(let error):
+                print("POST Error \(error)")
             }
+        }
+        
+    }
+
+
+//    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
+//        print("selecionou uma celula!")
+//    }
+    
+    
+    // In a storyboard-based application, you will often want to do a little preparation before navigation
+    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+        print("entrou prepare for segue")
+        var indexPaths = self.myCollectionView.indexPathsForSelectedItems()
+        if(segue.identifier == "productDetailView"){
+            let vc = segue.destinationViewController as! ProductDetailTableViewController
+            let selectedCell = myCollectionView.cellForItemAtIndexPath(indexPaths![0]) as! ProductsCollectionViewCell
+            vc.collectionViewCell = selectedCell
+            let indexPath = myCollectionView.indexPathForCell(selectedCell)!
+            let selectedProduct = productModelList[indexPath.row] as! ProductModel
+            vc.selectedProductData = selectedProduct
+            print("Segue identifier eh productDetailView")
         }
     }
 
-
-    func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
-        print("selecionou uma celula!")
-    }
     
     
     @IBAction func chooseCity(sender: UIButton){
