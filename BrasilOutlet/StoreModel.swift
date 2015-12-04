@@ -28,4 +28,8 @@ class StoreModel {
     var subscriptionPlan = ""
     var subscriptionExpirationDate = " "
     var subscriptionDiscountsLimit = " "
+    var distance = 0
+    var imageURL = " "
+    var email = " "
+    
 }

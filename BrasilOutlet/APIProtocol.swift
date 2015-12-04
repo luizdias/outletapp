@@ -12,6 +12,5 @@ import SwiftyJSON
 // Creating a protocol called APIProtocol
 protocol APIProtocol {
     func didReceiveResult(results: JSON)
-    func didErrorHappened(error: NSError)
-    
+    func didErrorHappened(error: NSError)    
 }

@@ -15,7 +15,7 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
     
     var locManager = CLLocationManager()
     var request: Alamofire.Request?
-    var tableData = ["Carregando os dados.."]
+    var tableData = []
     var MyAPI = API()
     var storeModelList: NSMutableArray = []
     
@@ -45,6 +45,9 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
             store.subscriptionPlan = subJson["subscriptionPlan"].stringValue
             store.subscriptionExpirationDate = subJson["subscriptionExpirationDate"].stringValue
             store.subscriptionDiscountsLimit = subJson["subscriptionDiscountsLimit"].stringValue
+            store.distance = subJson["distance"].intValue
+            store.imageURL = subJson["imageURL"].stringValue
+            store.email = subJson["email"].stringValue
             stores.addObject(store)
         }
         
@@ -59,7 +62,17 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
     
     func didErrorHappened(error: NSError) {
         self.hideHUD()
-        let alert = UIAlertController(title: "Erro", message: "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011).", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        if let message = error.userInfo["message"]{
+            print("\(message.description)")
+            alert.title = "Erro"
+            alert.message = message as? String
+            storeModelList = []
+            self.tableView.reloadData()
+        }else {
+            alert.title = "Erro"
+            alert.message = "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011)."
+        }
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
@@ -136,8 +149,8 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
             cell.nameLabel.text = storeArray.name
             cell.detailsLabel.text = storeArray.shoppingName + "\n" + storeArray.address
         } else {
-            cell.nameLabel.text = tableData[0]
-            cell.detailsLabel.text = tableData[0]
+            cell.nameLabel.text = tableData[0].stringValue
+            cell.detailsLabel.text = tableData[0].stringValue
         }
         return cell
     }

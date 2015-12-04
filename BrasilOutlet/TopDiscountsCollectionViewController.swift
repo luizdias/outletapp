@@ -28,7 +28,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         self.hideHUD()
         
         let products: NSMutableArray = []
-        NSLog("Product.didReceiveResult: \(result)")
+//        NSLog("Product.didReceiveResult: \(result)")
         
         for (index,subJson):(String, JSON) in result {
             let product = ProductModel()
@@ -76,15 +76,24 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         dispatch_async(dispatch_get_main_queue(), {
             self.myCollectionView.collectionViewLayout.invalidateLayout()
             self.myCollectionView.reloadData()
-            self.myCollectionView.reloadSections(NSIndexSet.init(index: 0))
+            //           self.myCollectionView.reloadSections(NSIndexSet.init(index: 0))
         })
     }
     
+
     func didErrorHappened(error: NSError) {
         self.hideHUD()
-        let message = error.userInfo
-        print("\(message.description)")
-        let alert = UIAlertController(title: "Erro", message: "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011).", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        if let message = error.userInfo["message"]{
+            print("\(message.description)")
+            alert.title = "Erro"
+            alert.message = message as? String
+            productModelList = []
+            self.myCollectionView.reloadData()
+        }else {
+            alert.title = "Erro"
+            alert.message = "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011)."
+        }
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }

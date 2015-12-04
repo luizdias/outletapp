@@ -64,11 +64,22 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
     
     func didErrorHappened(error: NSError) {
         self.hideHUD()
-        let alert = UIAlertController(title: "Erro", message: "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011).", preferredStyle: UIAlertControllerStyle.Alert)
+        let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+        if let message = error.userInfo["message"]{
+            print("\(message.description)")
+            alert.title = "Erro"
+            alert.message = message as? String
+            categoryModelList = []
+            subCategoryModelList = []
+            self.tableView.reloadData()
+        }else {
+            alert.title = "Erro"
+            alert.message = "Há um problema na conexão com o BrasilOutlet. Tente novamente mais tarde (1011)."
+        }
         alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
         self.presentViewController(alert, animated: true, completion: nil)
     }
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Uncomment the following line to preserve selection between presentations

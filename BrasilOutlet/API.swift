@@ -66,9 +66,9 @@ class API {
                 case .Success:
                     print("Validation Successful")
                     let json = JSON(response.result.value!)
-                    NSLog("POST Result: \(json)")
+ //                   NSLog("POST Result: \(json)")
 
-                    if (json != nil && delegate != nil){
+                    if (json != nil && delegate != nil && json.count != 0){
                         delegate!.didReceiveResult(json)
                     } else {
                         delegate!.didErrorHappened(NSError(domain: "brasiloutlet.com", code: 1011, userInfo: ["message" : "Não há nada para exibir."]))
