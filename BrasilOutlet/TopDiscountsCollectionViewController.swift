@@ -64,7 +64,6 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             product.store.subscriptionPlan = subJson["store"]["subscriptionPlan"].stringValue
             
             products.addObject(product)
-            print("\(products.description) e indice: \(index)")
         }
         
         productModelList = products
@@ -86,7 +85,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         if let message = error.userInfo["message"]{
             print("\(message.description)")
-            alert.title = "Erro"
+            alert.title = "Oops! 😮"
             alert.message = message as? String
             productModelList = []
             self.myCollectionView.reloadData()
@@ -100,7 +99,8 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
+        checkVersion()
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "loadList:",name:"load", object: nil)
         
         let actualCity = NSUserDefaults.standardUserDefaults().stringForKey("userCityKey") ?? ""
@@ -115,10 +115,64 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             viewController.preferredContentSize = CGSizeMake(320, 261)
             let popoverPresentationViewController = viewController.popoverPresentationController
             popoverPresentationViewController?.permittedArrowDirections = .Any
-//            popoverPresentationViewController?.delegate = self
-//            popoverPresentationController?.sourceRect = sender.frame
             presentViewController(viewController, animated: true, completion: nil)
         }
+    }
+    
+    func checkVersion(){
+
+        enum VersionStatus {
+            case Updated
+            case AVAILABLE
+            case Mandatory
+        }
+        
+        var parameters = ["appversion": "1"]
+
+        if let appVersion = NSBundle.mainBundle().infoDictionary?["CFBundleShortVersionString"] as? String {
+            parameters.updateValue(appVersion, forKey: "appversion")
+            print("Versão atual [ \(appVersion) ] da RELEASE.")
+        }
+        
+        let url = "http://www.brasiloutlet.com/webservice/app/checkversion.php"
+        Alamofire.request(.POST, url, parameters: parameters)
+            .validate()
+            .responseJSON { response in
+                switch response.result {
+                case .Success:
+                    let json = JSON(response.result.value!)
+                    print("Validation Successful: \(json)")
+                    if let actualVersion = json["update"].string {
+                        switch actualVersion{
+                        case "UPDATED":
+                            break
+                        case "AVAILABLE":
+                            let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.title = "Novidades! 😎"
+                            alert.message = "Há uma nova versão do Brasil Outlet disponível. Atualize já!"
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                            print("há uma atualização disponível")
+                        case "MANDATORY":
+                            let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+                            alert.title = "Ops!"
+                            alert.message = "Há uma nova versão disponível. Faça a atualização para continuar usando o app."
+                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            self.presentViewController(alert, animated: true, completion: nil)
+                        default:
+                            print("Não foi possível COMPARAR o status da versão atual no servidor.")
+                        }
+                    }else {
+                        print("Não foi possível obter status da versão atual no servidor.")
+                    }
+                    
+
+                case .Failure(let error):
+                    print("POST Error \(error)")
+                }
+                
+        }
+        
         
         
     }

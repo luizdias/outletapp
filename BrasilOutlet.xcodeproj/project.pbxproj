@@ -359,7 +359,7 @@
 				TargetAttributes = {
 					95C15FAC1BD9C1B600BD329A = {
 						CreatedOnToolsVersion = 7.0;
-						DevelopmentTeam = DHQE73465J;
+						DevelopmentTeam = RE42V45HN2;
 					};
 					95C15FC31BD9C1B700BD329A = {
 						CreatedOnToolsVersion = 7.0;
@@ -654,10 +654,12 @@
 			baseConfigurationReference = DF0781B9C5394C702F79C0ED /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = BrasilOutlet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brasiloutlet.BrasilOutlet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -666,10 +668,13 @@
 			baseConfigurationReference = 4049798EFEB52FAB1A0F26EB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				INFOPLIST_FILE = BrasilOutlet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.brasiloutlet.BrasilOutlet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

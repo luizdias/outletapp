@@ -67,7 +67,7 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
         let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
         if let message = error.userInfo["message"]{
             print("\(message.description)")
-            alert.title = "Erro"
+            alert.title = "Oops! 😮"
             alert.message = message as? String
             categoryModelList = []
             subCategoryModelList = []
