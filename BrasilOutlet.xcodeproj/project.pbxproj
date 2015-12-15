@@ -654,12 +654,13 @@
 			baseConfigurationReference = DF0781B9C5394C702F79C0ED /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Developer: Brasil Outlet (GJ5AACGM58)";
 				INFOPLIST_FILE = BrasilOutlet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brasiloutlet.BrasilOutlet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brasiloutlet.brasiloutletapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "c7d6f545-c8e0-4144-ba18-8d5803a468c0";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -668,13 +669,14 @@
 			baseConfigurationReference = 4049798EFEB52FAB1A0F26EB /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				CODE_SIGN_IDENTITY = "iPhone Distribution: Brasil Outlet (RE42V45HN2)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution: Brasil Outlet (RE42V45HN2)";
 				INFOPLIST_FILE = BrasilOutlet/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.brasiloutlet.BrasilOutlet;
+				PRODUCT_BUNDLE_IDENTIFIER = com.brasiloutlet.brasiloutletapp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "b84977ec-c8a1-41a2-a301-6d812ca96f08";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

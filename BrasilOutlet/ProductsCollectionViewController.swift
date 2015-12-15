@@ -45,6 +45,29 @@ class ProductsCollectionViewController: UIViewController, UICollectionViewDataSo
             product.image = subJson["image"].stringValue
             product.startDate = subJson["startDate"].stringValue
             product.title = subJson["title"].stringValue
+            let storeAqui = subJson["store"].dictionaryValue
+            product.store.id = (storeAqui["id"]?.intValue)!
+            product.store.name = (storeAqui["name"]?.stringValue)!
+            product.store.socialName = (storeAqui["socialName"]?.stringValue)!
+            product.store.cnpj = (storeAqui["cnpj"]?.stringValue)!
+            product.store.address = (storeAqui["address"]?.stringValue)!
+            product.store.latCoordinate = (storeAqui["latCoordinate"]?.stringValue)!
+            product.store.longCoordinate = (storeAqui["longCoordinate"]?.stringValue)!
+            product.store.cityId = (storeAqui["cityId"]?.intValue)!
+            product.store.favorite = (storeAqui["favorite"]?.stringValue)!
+            product.store.neighborId = (storeAqui["neighborId"]?.intValue)!
+            product.store.neighborName = (storeAqui["neighborName"]?.stringValue)!
+            product.store.shoppingId = (storeAqui["shoppingId"]?.intValue)!
+            product.store.shoppingName = (storeAqui["shoppingName"]?.stringValue)!
+            product.store.telephone1 = (storeAqui["telephone1"]?.stringValue)!
+            product.store.telephone2 = (storeAqui["telephone2"]?.stringValue)!
+            product.store.subscriptionPlan = (storeAqui["subscriptionPlan"]?.stringValue)!
+            product.store.subscriptionExpirationDate = (storeAqui["subscriptionExpirationDate"]?.stringValue)!
+            product.store.subscriptionDiscountsLimit = (storeAqui["subscriptionDiscountsLimit"]?.stringValue)!
+            product.store.distance = (storeAqui["distance"]?.intValue)!
+            product.store.imageURL = (storeAqui["imageUrl"]?.stringValue)!
+            product.store.email = (storeAqui["email"]?.stringValue)!
+            
             print("URL da imagem: \(product.image)")
             products.addObject(product)
         }

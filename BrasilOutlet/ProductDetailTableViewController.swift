@@ -64,6 +64,8 @@ class ProductDetailTableViewController: UITableViewController, ProductDetailTabl
         let storeText = store.name+"\n"+store.neighborName+"  "+store.shoppingName+"\n"+store.address+"\nTelefone: "+store.telephone1+"   "+store.telephone2
         cell.storeDetails.text = storeText
         cell.selectionStyle = UITableViewCellSelectionStyle.None
+        cell.telephone = store.telephone1
+        cell.email = store.email
         
         return cell
     }
@@ -97,17 +99,18 @@ class ProductDetailTableViewController: UITableViewController, ProductDetailTabl
 
     func cellPhoneButtonTapped(cell: ProductDetailTableViewCell) {
         
-        //TODO: Change Store phone number here
-        let phone = "tel://982374234";
-        let url:NSURL = NSURL(string:phone)!;
-        UIApplication.sharedApplication().openURL(url);
+        let phone = "tel://\(cell.telephone)"
+        let url:NSURL = NSURL(string:phone)!
+        print(cell.telephone)
+        UIApplication.sharedApplication().openURL(url)
     }
     
     func cellMailButtonTapped(cell: ProductDetailTableViewCell) {
         
         //TODO: Change Store e-mail address here
-        let email = "foo@bar.com"
+        let email = cell.email
         let url = NSURL(string: "mailto:\(email)")
+        print(cell.email)
         UIApplication.sharedApplication().openURL(url!)
     }
     

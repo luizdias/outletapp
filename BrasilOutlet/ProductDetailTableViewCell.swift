@@ -19,6 +19,9 @@ protocol ProductDetailTableViewCellDelegate {
 class ProductDetailTableViewCell: UITableViewCell {
     
     var request: Alamofire.Request?
+    var url = String()
+    var telephone = String()
+    var email = String()
 
     @IBOutlet var productDescription: UILabel!
     @IBOutlet var productDiscountValue: UIButton!

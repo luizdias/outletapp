@@ -23,7 +23,7 @@ class StoreModel {
     var neighborName = " "
     var shoppingId = 1
     var shoppingName = " "
-    var telephone1 = "(61)55552222"
+    var telephone1 = " "
     var telephone2 = " "
     var subscriptionPlan = ""
     var subscriptionExpirationDate = " "
