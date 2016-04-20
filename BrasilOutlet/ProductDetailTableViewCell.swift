@@ -34,6 +34,8 @@ class ProductDetailTableViewCell: UITableViewCell {
     @IBOutlet var productDiscountDates: UILabel!
     @IBOutlet var productLongDescription: UILabel!
     @IBOutlet var storeDetails: UILabel!
+    @IBOutlet weak var callStoreButton: UIButton!
+    @IBOutlet weak var sendEmailToStoreButton: UIButton!
     
     @IBAction func favoriteProduct(sender: UIButton) {
 

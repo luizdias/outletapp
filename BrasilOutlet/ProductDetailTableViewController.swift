@@ -67,6 +67,14 @@ class ProductDetailTableViewController: UITableViewController, ProductDetailTabl
         cell.telephone = store.telephone1
         cell.email = store.email
         
+        if cell.telephone == " " || cell.telephone == ""{
+            cell.callStoreButton.hidden = true
+        }
+        
+        if cell.email == " " || cell.email == ""{
+            cell.sendEmailToStoreButton.hidden = true
+        }
+        
         return cell
     }
     
@@ -92,6 +100,7 @@ class ProductDetailTableViewController: UITableViewController, ProductDetailTabl
         cell.request = Alamofire.request(.POST, likeURL).responseImage() {
             [weak self] response in
             if let likeResult = response.result.value {
+                //TODO: Implement the Like button here
                 print("SE LIKE OK: Trocar cor do botão!")
             }
         }

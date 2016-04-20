@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3PS-mf-fxP">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="10116" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="3PS-mf-fxP">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -398,17 +398,17 @@
                         <viewControllerLayoutGuide type="bottom" id="1Bb-6S-g4V"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="z9F-Hi-bkJ">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="CitySkyline" translatesAutoresizingMaskIntoConstraints="NO" id="1EW-xE-avK">
-                                <rect key="frame" x="20" y="70" width="374" height="241"/>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="CitySkyline" translatesAutoresizingMaskIntoConstraints="NO" id="1EW-xE-avK">
+                                <rect key="frame" x="16" y="70" width="193" height="125"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="1EW-xE-avK" secondAttribute="height" multiplier="31:20" id="uw6-Y1-UJb"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Escolha a cidade onde você está:" textAlignment="center" lineBreakMode="tailTruncation" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EgA-ni-XHu">
-                                <rect key="frame" x="20" y="28" width="374" height="34"/>
+                                <rect key="frame" x="16" y="28" width="343" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="y1d-Gr-K0Q"/>
                                 </constraints>
@@ -417,7 +417,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cfe-Sk-Qxw">
-                                <rect key="frame" x="20" y="612" width="374" height="48"/>
+                                <rect key="frame" x="16" y="543" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.24705882352941178" green="0.63921568627450975" blue="0.24313725490196078" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="p5X-pg-kmE"/>
@@ -430,8 +430,8 @@
                                     <action selector="confirmChosenCity:" destination="vUw-ay-rGy" eventType="touchUpInside" id="heZ-L6-Mk4"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cidade atual:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNO-5g-2yL">
-                                <rect key="frame" x="20" y="319" width="374" height="14"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Cidade atual:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tNO-5g-2yL">
+                                <rect key="frame" x="16" y="203" width="343" height="14"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="14" id="Bw7-DZ-GFU"/>
                                 </constraints>
@@ -440,7 +440,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DIq-Zv-qFm">
-                                <rect key="frame" x="20" y="668" width="374" height="48"/>
+                                <rect key="frame" x="16" y="599" width="343" height="48"/>
                                 <color key="backgroundColor" red="0.87865522251563055" green="1" blue="0.91810494063917869" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="48" id="oGo-ec-dTF"/>
@@ -453,8 +453,8 @@
                                     <action selector="cancelChoice:" destination="vUw-ay-rGy" eventType="touchUpInside" id="Gm8-Jv-fhj"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-E5-9dR">
-                                <rect key="frame" x="20" y="341" width="374" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="..." textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GkD-E5-9dR">
+                                <rect key="frame" x="16" y="225" width="343" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="6in-qM-Kym"/>
                                 </constraints>
@@ -462,8 +462,8 @@
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Escolha a cidade..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ia-vd-uHI">
-                                <rect key="frame" x="20" y="370" width="374" height="34"/>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="line" placeholder="Escolha a cidade..." textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4ia-vd-uHI">
+                                <rect key="frame" x="16" y="254" width="343" height="34"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="34" id="ibw-6x-yDS"/>
                                 </constraints>
@@ -497,7 +497,7 @@
                             <constraint firstItem="DIq-Zv-qFm" firstAttribute="leading" secondItem="z9F-Hi-bkJ" secondAttribute="leadingMargin" id="xiY-tf-SAD"/>
                         </constraints>
                     </view>
-                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
                         <outlet property="actualCityLabel" destination="tNO-5g-2yL" id="tQ6-c0-4gh"/>
                         <outlet property="actualCityText" destination="GkD-E5-9dR" id="0Vn-4m-Gx0"/>
@@ -724,6 +724,7 @@
                                 </tableViewCellContentView>
                                 <color key="backgroundColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                 <connections>
+                                    <outlet property="callStoreButton" destination="tb9-fb-Cta" id="aUy-6z-6eb"/>
                                     <outlet property="productActualPrice" destination="sLi-CA-P4n" id="ibZ-VB-Wzu"/>
                                     <outlet property="productDescription" destination="pYW-u1-Wxd" id="XIb-pZ-B19"/>
                                     <outlet property="productDiscountDates" destination="ROV-55-HuC" id="EPa-K9-U8b"/>
@@ -734,6 +735,7 @@
                                     <outlet property="productLongDescription" destination="a5h-s5-G4a" id="dai-ry-7q8"/>
                                     <outlet property="productOriginalPrice" destination="dJ7-as-XDT" id="3HH-YW-ji6"/>
                                     <outlet property="productShareButton" destination="siX-d4-K9s" id="OuH-M3-zpE"/>
+                                    <outlet property="sendEmailToStoreButton" destination="na9-UV-IWa" id="AXz-a9-MGx"/>
                                     <outlet property="storeDetails" destination="Q2o-k5-8gi" id="cIw-bS-4k0"/>
                                 </connections>
                             </tableViewCell>

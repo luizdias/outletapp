@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Alamofire
 
 class StoreTableViewCell: UITableViewCell {
 
@@ -14,6 +15,7 @@ class StoreTableViewCell: UITableViewCell {
     @IBOutlet var detailsLabel: UILabel!
     @IBOutlet var storeImage: UIImageView!
 
+    var request: Alamofire.Request?
     
     override func awakeFromNib() {
         super.awakeFromNib()

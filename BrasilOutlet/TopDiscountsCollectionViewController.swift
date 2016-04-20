@@ -150,14 +150,28 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
                             let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
                             alert.title = "Novidades! 😎"
                             alert.message = "Há uma nova versão do Brasil Outlet disponível. Atualize já!"
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            
+                            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                                let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/brasiloutlet/id1065711297?ls=1&mt=8")
+                                if UIApplication.sharedApplication().canOpenURL(url!) == true  {
+                                    UIApplication.sharedApplication().openURL(url!)
+                                }
+                            }
+                            
+                            alert.addAction(OKAction)
                             self.presentViewController(alert, animated: true, completion: nil)
                             print("há uma atualização disponível")
                         case "MANDATORY":
                             let alert = UIAlertController(title: "", message: "", preferredStyle: UIAlertControllerStyle.Alert)
                             alert.title = "Ops!"
                             alert.message = "Há uma nova versão disponível. Faça a atualização para continuar usando o app."
-                            alert.addAction(UIAlertAction(title: "OK", style: UIAlertActionStyle.Default, handler: nil))
+                            let OKAction = UIAlertAction(title: "OK", style: .Default) { (action) in
+                                let url  = NSURL(string: "itms-apps://itunes.apple.com/us/app/brasiloutlet/id1065711297?ls=1&mt=8")
+                                if UIApplication.sharedApplication().canOpenURL(url!) == true  {
+                                    UIApplication.sharedApplication().openURL(url!)
+                                }
+                            }
+                            alert.addAction(OKAction)
                             self.presentViewController(alert, animated: true, completion: nil)
                         default:
                             print("Não foi possível COMPARAR o status da versão atual no servidor.")

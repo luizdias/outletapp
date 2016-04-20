@@ -19,12 +19,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
 
         let defaults = NSUserDefaults.standardUserDefaults()
-        
-        let firstPage = OnboardingContentViewController(title: "Bem vindo!", body: "Quer comprar alguma coisa mas não sabe onde?", image: UIImage(named: "TutorialFirst"), buttonText: "Text For Button") { () -> Void in
+        self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+        self.window?.backgroundColor = UIColor.whiteColor()
+
+        let firstPage = OnboardingContentViewController(title: "Bem vindo!", body: "Quer comprar alguma coisa mas não sabe onde?", image: UIImage(named: "TutorialFirst"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         
-        let secondPage = OnboardingContentViewController(title: "Na Brasil Outlet:", body: "Você encontra as promoções mais baratas, mais perto de você e DE GRAÇA!", image: UIImage(named: "TutorialSecond"), buttonText: "Botão") { () -> Void in
+        let secondPage = OnboardingContentViewController(title: "Na Brasil Outlet:", body: "Você encontra as promoções mais baratas, mais perto de você e DE GRAÇA!", image: UIImage(named: "TutorialSecond"), buttonText: "") { () -> Void in
             // do something here when users press the button, like ask for location services permissions, register for push notifications, connect to social media, or finish the onboarding process
         }
         let onboardingVC = OnboardingViewController(backgroundImage: UIImage(named: "bgOnboarding.png"), contents: [firstPage, secondPage])
@@ -38,9 +40,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         onboardingVC.titleTextColor = UIColor.blackColor()
         onboardingVC.bodyFontSize = 22
         onboardingVC.bodyTextColor = UIColor.blackColor()
-        onboardingVC.iconWidth = CGFloat(266.0)
-        onboardingVC.iconHeight = CGFloat(276.0)
-        onboardingVC.topPadding = 100
+        onboardingVC.iconWidth = CGFloat(266.0*0.8)
+        onboardingVC.iconHeight = CGFloat(276.0*0.8)
+        onboardingVC.topPadding = 30
         onboardingVC.underIconPadding = 20
         onboardingVC.underTitlePadding = 15
         onboardingVC.skipButton.setTitle("Começar!", forState: UIControlState.Normal)
@@ -56,6 +58,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         self.window?.backgroundColor = UIColor.whiteColor()
         if defaults.boolForKey("shouldShowOnboardingScreen") == true || defaults.stringForKey("shouldShowOnboardingScreen") == nil {
             self.window?.rootViewController = onboardingVC
+        } else {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let initialViewController = storyboard.instantiateViewControllerWithIdentifier("StartHere")
+            self.window?.rootViewController = initialViewController
+            self.window?.makeKeyAndVisible()
         }
         
         onboardingVC.skipHandler = ({

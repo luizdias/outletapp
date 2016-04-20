@@ -148,10 +148,28 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
             let storeArray = storeModelList[indexPath.row] as! StoreModel
             cell.nameLabel.text = storeArray.name
             cell.detailsLabel.text = storeArray.shoppingName + "\n" + storeArray.address
+
+            //loading images from URLs Asyncronously
+            let imageURL = (storeArray.imageURL)
+            cell.storeImage.image = nil
+            cell.request?.cancel()
+            cell.request = Alamofire.request(.GET, imageURL).responseImage() {
+                [weak self] response in
+                if let image = response.result.value {
+                    cell.storeImage.contentMode = UIViewContentMode.ScaleAspectFit
+                    cell.storeImage.image = image
+                    print("response de uma imagem")
+                }
+            }
+
+
         } else {
             cell.nameLabel.text = tableData[0].stringValue
             cell.detailsLabel.text = tableData[0].stringValue
         }
+        
+
+        
         return cell
     }
     
@@ -166,7 +184,7 @@ class NearestsStoresTableViewController: UITableViewController, CLLocationManage
         popoverPresentationController?.sourceRect = sender.frame
         presentViewController(viewController, animated: true, completion: nil)
     }
-
+    
     
     /*
     // Override to support conditional editing of the table view.
