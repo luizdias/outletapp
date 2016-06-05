@@ -1,7 +1,10 @@
 # KYDrawerController
 
-[![Pod Version](http://img.shields.io/cocoapods/v/KYDrawerController.svg?style=flat)](http://cocoadocs.org/docsets/KYDrawerController/)[![Pod Platform](http://img.shields.io/cocoapods/p/KYDrawerController.svg?style=flat)](http://cocoadocs.org/docsets/KYDrawerController/)[![Pod License](http://img.shields.io/cocoapods/l/KYDrawerController.svg?style=flat)](https://github.com/ykyohei/KYDrawerController/blob/master/LICENSE)[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat
-)](https://developer.apple.com/swift)
+[![Carthage compatible](https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat)](https://github.com/Carthage/Carthage)
+[![Pod Version](http://img.shields.io/cocoapods/v/KYDrawerController.svg?style=flat)](http://cocoadocs.org/docsets/KYDrawerController/)
+[![Pod Platform](http://img.shields.io/cocoapods/p/KYDrawerController.svg?style=flat)](http://cocoadocs.org/docsets/KYDrawerController/)
+[![Pod License](http://img.shields.io/cocoapods/l/KYDrawerController.svg?style=flat)](https://github.com/ykyohei/KYDrawerController/blob/master/LICENSE)
+[![Language](http://img.shields.io/badge/language-swift-brightgreen.svg?style=flat)](https://developer.apple.com/swift)
 
 `KYDrawerController` is a side drawer navigation container view controller similar to Android.
 
@@ -95,6 +98,10 @@ func setDrawerState(state: DrawerState, animated: Bool)
 optional func drawerController(drawerController: KYDrawerController, stateChanged state: KYDrawerController.DrawerState)
 ```
 
+
+## Objective-C version
+
+https://github.com/AustinChou/KYDrawerController-ObjC
 
 ## License
 

@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'EEF1DFAE1B8A1B593975B433'
-               BlueprintName = 'KYDrawerController'
+               BlueprintIdentifier = '79C040AFDDCE1BCBF6D8B5EB0B85887F'
+               BlueprintName = 'Alamofire'
                ReferencedContainer = 'container:Pods.xcodeproj'
-               BuildableName = 'KYDrawerController.framework'>
+               BuildableName = 'Alamofire.framework'>
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>

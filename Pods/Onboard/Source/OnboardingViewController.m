@@ -19,26 +19,37 @@ static CGFloat const kDefaultSaturationDeltaFactor = 1.8;
 
 static NSString * const kSkipButtonText = @"Skip";
 
-@implementation OnboardingViewController {
-    NSURL *_videoURL;
-    UIPageViewController *_pageVC;
-    
-    OnboardingContentViewController *_currentPage;
-    OnboardingContentViewController *_upcomingPage;
-}
 
+@interface OnboardingViewController ()
+
+@property (nonatomic, strong) OnboardingContentViewController *currentPage;
+@property (nonatomic, strong) OnboardingContentViewController *upcomingPage;
+
+@property (nonatomic, strong) UIPageViewController *pageVC;
+@property (nonatomic, strong) NSURL *videoURL;
+
+@end
+
+
+@implementation OnboardingViewController
+
+- (void)dealloc {
+    [[NSNotificationCenter defaultCenter] removeObserver:self];
+}
 
 #pragma mark - Initializing with images
 
 + (instancetype)onboardWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
-     OnboardingViewController *onboardingVC = [[self alloc] initWithBackgroundImage:backgroundImage contents:contents];
-     return onboardingVC;
+    return [[self alloc] initWithBackgroundImage:backgroundImage contents:contents];
  }
 
 - (instancetype)initWithBackgroundImage:(UIImage *)backgroundImage contents:(NSArray *)contents {
     self = [self initWithContents:contents];
-    
-    // store the passed in view controllers array
+
+    if (self == nil) {
+        return nil;
+    }
+
     self.backgroundImage = backgroundImage;
     
     return self;
@@ -48,15 +59,17 @@ static NSString * const kSkipButtonText = @"Skip";
 #pragma mark - Initializing with video files
 
 + (instancetype)onboardWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents {
-    OnboardingViewController *onboardingVC = [[self alloc] initWithBackgroundVideoURL:backgroundVideoURL contents:contents];
-    return onboardingVC;
+    return [[self alloc] initWithBackgroundVideoURL:backgroundVideoURL contents:contents];
 }
 
 - (instancetype)initWithBackgroundVideoURL:(NSURL *)backgroundVideoURL contents:(NSArray *)contents {
     self = [self initWithContents:contents];
-    
-    // store the passed in video URL
-    _videoURL = backgroundVideoURL;
+
+    if (self == nil) {
+        return nil;
+    }
+
+    self.videoURL = backgroundVideoURL;
     
     return self;
 }
@@ -66,23 +79,26 @@ static NSString * const kSkipButtonText = @"Skip";
 
 - (instancetype)initWithContents:(NSArray *)contents {
     self = [super init];
+
+    if (self == nil) {
+        return nil;
+    }
     
-    // store the passed in view controllers array
+    // Store the passed in view controllers array
     self.viewControllers = contents;
     
-    // set the default properties
+    // Set the default properties
     self.shouldMaskBackground = YES;
     self.shouldBlurBackground = NO;
     self.shouldFadeTransitions = NO;
     self.fadePageControlOnLastPage = NO;
     self.fadeSkipButtonOnLastPage = NO;
     self.swipingEnabled = YES;
-    self.hidePageControl = NO;
     
     self.allowSkipping = NO;
     self.skipHandler = ^{};
     
-    // create the initial exposed components so they can be customized
+    // Create the initial exposed components so they can be customized
     self.pageControl = [UIPageControl new];
     self.pageControl.numberOfPages = self.viewControllers.count;
     self.pageControl.userInteractionEnabled = NO;
@@ -90,8 +106,9 @@ static NSString * const kSkipButtonText = @"Skip";
     self.skipButton = [UIButton new];
     [self.skipButton setTitle:kSkipButtonText forState:UIControlStateNormal];
     [self.skipButton addTarget:self action:@selector(handleSkipButtonPressed) forControlEvents:UIControlEventTouchUpInside];
+    self.skipButton.titleLabel.adjustsFontSizeToFitWidth = YES;
 
-    // create the movie player controller
+    // Create the movie player controller
     self.moviePlayerController = [MPMoviePlayerController new];
     
     // Handle when the app enters the foreground.
@@ -193,10 +210,8 @@ static NSString * const kSkipButtonText = @"Skip";
     }
     
     // create and configure the page control
-    if (!self.hidePageControl) {
-        self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
-        [self.view addSubview:self.pageControl];
-    }
+    self.pageControl.frame = CGRectMake(0, CGRectGetMaxY(self.view.frame) - self.underPageControlPadding - kPageControlHeight, self.view.frame.size.width, kPageControlHeight);
+    [self.view addSubview:self.pageControl];
     
     // if we allow skipping, setup the skip button
     if (self.allowSkipping) {
@@ -355,8 +370,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // return the previous view controller in the array unless we're at the beginning
     if (viewController == [self.viewControllers firstObject]) {
         return nil;
-    }
-    else {
+    } else {
         NSInteger priorPageIndex = [self.viewControllers indexOfObject:viewController] - 1;
         return self.viewControllers[priorPageIndex];
     }
@@ -366,8 +380,7 @@ static NSString * const kSkipButtonText = @"Skip";
     // return the next view controller in the array unless we're at the end
     if (viewController == [self.viewControllers lastObject]) {
         return nil;
-    }
-    else {
+    } else {
         NSInteger nextPageIndex = [_viewControllers indexOfObject:viewController] + 1;
         return self.viewControllers[nextPageIndex];
     }
@@ -417,10 +430,10 @@ static NSString * const kSkipButtonText = @"Skip";
     
     // these cases have some funky results given the way this method is called, like stuff
     // just disappearing, so we want to do nothing in these cases
-    if (_upcomingPage == _currentPage || percentComplete == 0) {
+    if (percentComplete == 0) {
         return;
     }
-    
+
     // set the next page's alpha to be the percent complete, so if we're 90% of the way
     // scrolling towards the next page, its content's alpha should be 90%
     [_upcomingPage updateAlphas:percentComplete];
@@ -430,7 +443,7 @@ static NSString * const kSkipButtonText = @"Skip";
     [_currentPage updateAlphas:percentCompleteInverse];
 
     // determine if we're transitioning to or from our last page
-    BOOL transitioningToLastPage = (_upcomingPage == self.viewControllers.lastObject);
+    BOOL transitioningToLastPage = (_currentPage != self.viewControllers.lastObject && _upcomingPage == self.viewControllers.lastObject);
     BOOL transitioningFromLastPage = (_currentPage == self.viewControllers.lastObject) && (_upcomingPage == self.viewControllers[self.viewControllers.count - 2]);
     
     // fade the page control to and from the last page
