@@ -218,7 +218,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
         if productModelList.count != 0{
             return productModelList.count
         } else {
-                return tableData.count
+            return tableData.count
         }
     }
     
@@ -237,6 +237,7 @@ class TopDiscountsCollectionViewController: UIViewController, UICollectionViewDa
             
             //loading images from URLs Asyncronously
             let imageURL = (productArray.image)
+            print("URL DA IMAGEM: \(imageURL)")
             cell.productImage.image = nil
             cell.request?.cancel()
             cell.request = Alamofire.request(.GET, imageURL).responseImage() {

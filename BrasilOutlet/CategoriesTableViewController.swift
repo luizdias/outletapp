@@ -152,6 +152,7 @@ class CategoriesTableViewController: UITableViewController, CLLocationManagerDel
             //loading images from URLs Asyncronously
 //            let imageURL = (categoryArray.image_path)
             let imageURL = categoryArray.imagePath
+            print("URL DA IMAGEM: \(imageURL)")
             cell.imageView?.image = nil
             cell.request?.cancel()
             cell.request = Alamofire.request(.GET, imageURL).responseImage() {

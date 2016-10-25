@@ -30,7 +30,7 @@ class API {
         )
     }()
     
-    // Setting up an API Class with a GET method that accepts a elegate of type APIProtocol
+    // Setting up an API Class with a GET method that accepts a delegate of type APIProtocol
     func get(path: String, parameters: [String: AnyObject]? = nil, delegate: APIProtocol? = nil){
         let url = "\(self.hostname)\(path)"
         NSLog("Preparing for GET request to: \(url)")
